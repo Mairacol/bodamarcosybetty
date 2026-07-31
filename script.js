@@ -9,10 +9,41 @@ const urlParams = new URLSearchParams(window.location.search);
 const lang = urlParams.get('lang') || 'es';
 const family = urlParams.get('family') || (lang === 'en' ? 'Special Guest' : 'Invitado Especial');
 const slots = parseInt(urlParams.get('slots')) || 1;
-
-// Diccionario de textos según el idioma
+// Diccionario de textos ampliado para toda la web según el idioma
 const translations = {
     es: {
+        musicBtn: 'Música',
+        heroSub: 'NOS CASAMOS',
+        scroll: 'DESLIZAR',
+        agendar: 'AGENDAR FECHA',
+        venueDesc: 'Te esperamos para celebrar este momento único juntos.',
+        verMapa: 'VER MAPA',
+        cronogramaSub: 'EL GRAN DÍA',
+        cronogramaTitle: 'Cronograma',
+        ev1: 'Recepción',
+        ev2: 'Ceremonia',
+        ev3: 'Cena & Fiesta',
+        ev4: 'Cierre',
+        dressSub: 'CÓDIGO DE VESTIMENTA',
+        dressTitle: 'Dress Code',
+        dressType: 'Elegante / Cocktail',
+        mujeres: 'Mujeres',
+        largo: 'Largo',
+        corto: 'Corto',
+        hombres: 'Hombres',
+        corbata: 'Con Corbata',
+        sinCorbata: 'Sin Corbata',
+        partySub: 'LA FIESTA',
+        spotifyDesc: '¿Qué tema no puede faltar en la fiesta? ¡Sumá tus canciones favoritas a nuestra playlist colaborativa!',
+        spotifyBtn: 'SUGERIR CANCIÓN',
+        giftsSub: 'DETALLES',
+        giftsTitle: 'Regalos',
+        giftsDesc: 'Lo más importante es compartir este día con ustedes. Si desean tener un gesto con nosotros para nuestra nueva etapa, pueden hacerlo aquí:',
+        btnNac: 'VER DATOS BANCARIOS (ARGENTINA)',
+        titularNac: 'Titular:',
+        btnInt: 'VER DATOS BANCARIOS (INTERNACIONAL)',
+        bancoInt: 'Banco:',
+        guestLabel: 'Invitados',
         passesAvailable: (n) => n === 1 ? '1 pase disponible' : `${n} pases disponibles`,
         asistenciaSub: 'ASISTENCIA',
         asistenciaTitle: 'RSVP',
@@ -37,9 +68,46 @@ const translations = {
         submitBtn: 'ENVIAR CONFIRMACIÓN',
         errorMsg: 'Por favor completá todos los campos obligatorios.',
         successTitle: '¡Asistencia Confirmada!',
-        successText: 'Tu respuesta fue guardada con éxito. ¡Te esperamos!'
+        successText: 'Tu respuesta fue guardada con éxito. ¡Te esperamos!',
+        photoSub: 'RECUERDOS',
+        photoTitle: 'Subir fotos de la boda',
+        photoDesc: 'Queremos revivir nuestro día a través de sus ojos. Compartinos las fotos y videos que saquen durante la celebración.',
+        photoBtn: 'SUBIR FOTOS',
+        footerCredito: 'Una experiencia creada por'
     },
     en: {
+        musicBtn: 'Music ON',
+        heroSub: 'WE ARE GETTING MARRIED',
+        scroll: 'SCROLL',
+        agendar: 'ADD TO CALENDAR',
+        venueDesc: 'We look forward to celebrating this unique moment together.',
+        verMapa: 'VIEW MAP',
+        cronogramaSub: 'THE BIG DAY',
+        cronogramaTitle: 'Timeline',
+        ev1: 'Reception',
+        ev2: 'Ceremony',
+        ev3: 'Dinner & Party',
+        ev4: 'Closing',
+        dressSub: 'DRESS CODE',
+        dressTitle: 'Dress Code',
+        dressType: 'Formal / Cocktail',
+        mujeres: 'Women',
+        largo: 'Long',
+        corto: 'Short',
+        hombres: 'Men',
+        corbata: 'With Tie',
+        sinCorbata: 'Without Tie',
+        partySub: 'THE PARTY',
+        spotifyDesc: "What song can't be missing at the party? Add your favorite tracks to our collaborative playlist!",
+        spotifyBtn: 'SUGGEST SONG',
+        giftsSub: 'DETAILS',
+        giftsTitle: 'Gifts',
+        giftsDesc: 'The most important thing is sharing this day with you. If you wish to give us a token for our new chapter, you can do so here:',
+        btnNac: 'VIEW BANK DETAILS (ARGENTINA)',
+        titularNac: 'Account Holder:',
+        btnInt: 'VIEW BANK DETAILS (INTERNATIONAL)',
+        bancoInt: 'Bank:',
+        guestLabel: 'Guests',
         passesAvailable: (n) => n === 1 ? '1 pass available' : `${n} passes available`,
         asistenciaSub: 'ATTENDANCE',
         asistenciaTitle: 'RSVP',
@@ -64,7 +132,12 @@ const translations = {
         submitBtn: 'SUBMIT RSVP',
         errorMsg: 'Please complete all required fields.',
         successTitle: 'Attendance Confirmed!',
-        successText: 'Your response has been saved successfully. We look forward to seeing you!'
+        successText: 'Your response has been saved successfully. We look forward to seeing you!',
+        photoSub: 'MEMORIES',
+        photoTitle: 'Upload Wedding Photos',
+        photoDesc: 'We want to relive our day through your eyes. Please share the photos and videos you take during the celebration.',
+        photoBtn: 'UPLOAD PHOTOS',
+        footerCredito: 'An experience created by'
     }
 };
 
@@ -83,25 +156,78 @@ const musicToggleBtn = document.getElementById('musicToggleBtn');
 const musicIcon = document.getElementById('musicIcon');
 const musicText = document.getElementById('musicText');
 const thanksModal = document.getElementById('thanksModal');
-
+document.getElementById('footer-credito').textContent = t.footerCredito;
 let isPlaying = false;
 
-// Mostrar el nombre personalizado y la frase de lugares reservados
-if (familyNameEl) familyNameEl.textContent = family;
-if (slotsEl) {
-    slotsEl.textContent = lang === 'en' 
-        ? (slots === 1 ? '1 reserved place' : `${slots} reserved places`) 
-        : `${slots} lugares reservados`;
-}
+// Inyectar traducciones globales en toda la web al cargar
+document.addEventListener('DOMContentLoaded', () => {
+    const setText = (id, text) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+    };
 
-// Actualizar textos estáticos del HTML si tienen clases o IDs específicos
-document.querySelectorAll('.rsvp-subtitle').forEach(el => el.textContent = t.asistenciaSub);
-document.querySelectorAll('.title-script').forEach(el => el.textContent = t.asistenciaTitle);
-document.querySelectorAll('.limit').forEach(el => el.textContent = t.limit);
-if (submitBtn) submitBtn.textContent = t.submitBtn;
+    setText('musicText', t.musicBtn);
+    setText('txtHeroSub', t.heroSub);
+    setText('txtScroll', t.scroll);
+    setText('txtAgendar', t.agendar);
+    setText('txtVenueDesc', t.venueDesc);
+    setText('txtVerMapa', t.verMapa);
+    setText('txtCronogramaSub', t.cronogramaSub);
+    setText('txtCronogramaTitle', t.cronogramaTitle);
+    setText('txtEv1', t.ev1);
+    setText('txtEv2', t.ev2);
+    setText('txtEv3', t.ev3);
+    setText('txtEv4', t.ev4);
+    setText('txtDressSub', t.dressSub);
+    setText('txtDressTitle', t.dressTitle);
+    setText('txtDressType', t.dressType);
+    setText('txtMujeres', t.mujeres);
+    setText('txtLargo', t.largo);
+    setText('txtCorto', t.corto);
+    setText('txtHombres', t.hombres);
+    setText('txtCorbata', t.corbata);
+    setText('txtSinCorbata', t.sinCorbata);
+    setText('txtPartySub', t.partySub);
+    setText('txtSpotifyDesc', t.spotifyDesc);
+    setText('txtSpotifyBtn', t.spotifyBtn);
+    setText('txtGiftsSub', t.giftsSub);
+    setText('txtGiftsTitle', t.giftsTitle);
+    setText('txtGiftsDesc', t.giftsDesc);
+    setText('txtBtnNac', t.btnNac);
+    setText('txtTitularNac', t.titularNac);
+    setText('txtBtnInt', t.btnInt);
+    setText('txtBancoInt', t.bancoInt);
+    setText('txtGuestLabel', t.guestLabel);
+    setText('txtRsvpSub', t.asistenciaSub);
+    setText('txtRsvpLimit', t.limit);
+    setText('txtPhotoSub', t.photoSub);
+    setText('txtPhotoTitle', t.photoTitle);
+    setText('txtPhotoDesc', t.photoDesc);
+
+    const photoBtn = document.getElementById('txtPhotoBtn');
+    if (photoBtn) {
+        photoBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> ${t.photoBtn}`;
+    }
+
+    if (familyNameEl) familyNameEl.textContent = family;
+    if (slotsEl) slotsEl.textContent = t.passesAvailable(slots);
+
+    document.querySelectorAll('.rsvp-subtitle').forEach(el => el.textContent = t.asistenciaSub);
+    document.querySelectorAll('.title-script').forEach(el => {
+        if (!el.classList.contains('photo-title') && el.id !== 'txtCronogramaTitle' && el.id !== 'txtDressTitle' && el.id !== 'txtGiftsTitle') {
+            el.textContent = t.asistenciaTitle;
+        }
+    });
+    document.querySelectorAll('.limit').forEach(el => el.textContent = t.limit);
+    if (submitBtn) submitBtn.textContent = t.submitBtn;
+
+    if (slots && slots > 0) {
+        generarCamposInvitados(slots);
+    }
+});
 
 // =========================================
-// 1. INTRODUCCIÓN AUTOMÁTICA & MÚSICA DE FONDO
+// INTRODUCCIÓN AUTOMÁTICA & MÚSICA DE FONDO
 // =========================================
 setTimeout(() => {
     if (introOverlay) {
@@ -118,7 +244,7 @@ setTimeout(() => {
             });
         }
     }
-}, 4000);
+}, 6000); 
 
 if (musicToggleBtn) {
     musicToggleBtn.addEventListener('click', () => {
@@ -141,10 +267,6 @@ if (musicToggleBtn) {
 // =========================================
 // 2. GENERAR CAMPOS DE INVITADOS AUTOMÁTICAMENTE
 // =========================================
-if (slots && slots > 0) {
-    generarCamposInvitados(slots);
-}
-
 function generarCamposInvitados(cantidad) {
     if (!guestsDiv) return;
     guestsDiv.innerHTML = ''; 
@@ -175,7 +297,7 @@ function generarCamposInvitados(cantidad) {
                 <label class="editorial-label">${t.transporteLabel}</label>
                 <div class="editorial-radio-group">
                     <label class="radio-pill"><input type="radio" name="transporte${i}" value="${lang === 'en' ? 'Yes' : 'Sí'}" required> ${t.transporteSi}</label>
-                    <label class="radio-pill"><input type="radio" name="transporte${i}" value="${lang === 'en' ? 'No' : 'No'}" checked> ${t.transporteNo}</label>
+                    <label class="radio-pill"><input type="radio" name="transporte${i}" value="${lang === 'en' ? 'No' : 'No'}"> ${t.transporteNo}</label>
                 </div>
             </div>
 

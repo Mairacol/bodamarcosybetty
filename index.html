@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boda de Marcos & Betty | 28.11.2026</title>
+    <title>Marcos & Betty | 28.11.2026</title>
     <link rel="stylesheet" href="styles.css">
     <!-- Google Fonts for wedding typography style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">    <!-- FontAwesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">    <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- INTRODUCCIÓN CON INICIALES (M & B) -->
-<!-- INTRODUCCIÓN EDITORIAL AUTOMÁTICA (FONDO BLANCO) -->
-    <div id="intro-overlay" class="intro-overlay">
-        <div class="intro-content">
-            <h1 class="intro-monogram">M & B</h1>
-            <p class="intro-subtitle">Nuestra Boda</p>
-            <div class="loader-line"></div>
-        </div>
+<!-- INTRODUCCIÓN CON EFECTO DE ESCRITURA CALIGRÁFICA -->
+<div id="intro-overlay" class="intro-overlay">
+    <div class="intro-content">
+        <!-- SVG para animar el trazo de las letras -->
+        <svg class="intro-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="animated-monogram">
+                M + B
+            </text>
+        </svg>
+        <div class="intro-divider"></div>
+        <p class="intro-subtitle">28 . 11 . 2026</p>
     </div>
+</div>
 
     <!-- REPRODUCTOR DE MÚSICA DE FONDO (Con botón de pausa/reproducir) -->
     <div class="music-player-floating">
@@ -39,13 +43,12 @@
     <!-- CONTENIDO PRINCIPAL DE LA INVITACIÓN -->
     <main class="main-container">
 
-
 <!-- HERO SECTION (PANTALLA DE APERTURA LIMPIA) -->
 <section class="hero-section">
     
     <!-- SUBTÍTULO -->
     <div class="hero-subtitle-wrapper">
-        <span class="hero-subtitle">NOS CASAMOS</span>
+        <span class="hero-subtitle" id="txtHeroSub">NOS CASAMOS</span>
     </div>
 
     <!-- NOMBRES (PROTAGONISTAS) -->
@@ -59,7 +62,7 @@
     
     <!-- INDICADOR DE SCROLL SUTIL -->
     <div class="scroll-indicator">
-        <span>DESLIZAR</span>
+        <span id="txtScroll">DESLIZAR</span>
         <div class="scroll-line"></div>
     </div>
 
@@ -81,6 +84,7 @@
         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Marcos+%26+Betty&dates=20261128T160000Z%2F20261129T040000Z&details=¡Te+invitamos+a+celebrar+nuestra+boda!&location=Argentina" 
            target="_blank" 
            class="editorial-agendar-link"
+           id="txtAgendar"
            title="Agregar a mi calendario">
             AGENDAR FECHA 
         </a>
@@ -101,13 +105,14 @@
 
         <!-- Título -->
         <h2 class="venue-title">Quinta Los Galpones</h2>
-        <p class="venue-text">Te esperamos para celebrar este momento único juntos.</p>
+        <p class="venue-text" id="txtVenueDesc">Te esperamos para celebrar este momento único juntos.</p>
 
         <!-- Enlace al mapa minimalista (Sin botón pesado) -->
         <div class="venue-link-wrapper">
             <a href="https://maps.app.goo.gl/3S4tzLSLaTLVGQG59" 
                target="_blank" 
                class="editorial-map-link"
+               id="txtVerMapa"
                title="Ver mapa en Google Maps">
                 VER MAPA 
             </a>
@@ -121,37 +126,35 @@
 <section class="cronograma-section">
     <div class="cronograma-container">
         
-        <span class="cronograma-subtitle">EL GRAN DÍA</span>
-        <h2 class="cronograma-title-script">Cronograma</h2>
+        <span class="cronograma-subtitle" id="txtCronogramaSub">EL GRAN DÍA</span>
+        <h2 class="cronograma-title-script" id="txtCronogramaTitle">Cronograma</h2>
 
         <!-- Contenedor con espacio generoso entre eventos -->
         <div class="free-timeline">
             
             <div class="timeline-block">
                 <span class="block-time">18:00 hs</span>
-                <h3 class="block-event">Recepción</h3>
+                <h3 class="block-event" id="txtEv1">Recepción</h3>
             </div>
 
             <div class="timeline-block">
                 <span class="block-time">19:00 hs</span>
-                <h3 class="block-event">Ceremonia</h3>
+                <h3 class="block-event" id="txtEv2">Ceremonia</h3>
             </div>
 
             <div class="timeline-block">
                 <span class="block-time">20:30 hs</span>
-                <h3 class="block-event">Cena & Fiesta</h3>
+                <h3 class="block-event" id="txtEv3">Cena & Fiesta</h3>
             </div>
 
             <div class="timeline-block">
                 <span class="block-time">02:00 hs</span>
-                <h3 class="block-event">Cierre</h3>
+                <h3 class="block-event" id="txtEv4">Cierre</h3>
             </div>
 
         </div>
     </div>
 </section>
-
-
 
 <!-- =========================================
      SECCIÓN DRESS CODE (IMÁGENES GRANDES Y LIMPIAS)
@@ -159,39 +162,38 @@
 <section class="dresscode-section">
     <div class="dresscode-container">
         
-        <span class="dresscode-subtitle">CÓDIGO DE VESTIMENTA</span>
-        <h2 class="dresscode-title-script">Dress Code</h2>
-        <p class="dresscode-main-type">Elegante / Cocktail</p>
+        <h2 class="dresscode-title-script" id="txtDressTitle">Dress Code</h2>
+        <p class="dresscode-main-type" id="txtDressType">Elegante / Cocktail</p>
 
         <!-- Contenedor dual principal -->
         <div class="dresscode-grid">
             
             <!-- Bloque Mujeres -->
             <div class="dresscode-card">
-                <h3 class="dresscode-category">Mujeres</h3>
+                <h3 class="dresscode-category" id="txtMujeres">Mujeres</h3>
                 <div class="dresscode-double-img-wrapper">
                     <div class="dresscode-sub-img">
                         <img src="images/betty.png" alt="Vestido Largo" class="dresscode-illus">
-                        <span class="sub-label">Largo</span>
+                        <span class="sub-label" id="txtLargo">Largo</span>
                     </div>
                     <div class="dresscode-sub-img">
                         <img src="images/bettycorto.png" alt="Vestido Corto" class="dresscode-illus">
-                        <span class="sub-label">Corto</span>
+                        <span class="sub-label" id="txtCorto">Corto</span>
                     </div>
                 </div>
             </div>
 
             <!-- Bloque Hombres -->
             <div class="dresscode-card">
-                <h3 class="dresscode-category">Hombres</h3>
+                <h3 class="dresscode-category" id="txtHombres">Hombres</h3>
                 <div class="dresscode-double-img-wrapper">
                     <div class="dresscode-sub-img">
                         <img src="images/marcoscorbata.png" alt="Con Corbata" class="dresscode-illus">
-                        <span class="sub-label">Con Corbata</span>
+                        <span class="sub-label" id="txtCorbata">Con Corbata</span>
                     </div>
                     <div class="dresscode-sub-img">
                         <img src="images/marcos.png" alt="Sin Corbata" class="dresscode-illus">
-                        <span class="sub-label">Sin Corbata</span>
+                        <span class="sub-label" id="txtSinCorbata">Sin Corbata</span>
                     </div>
                 </div>
             </div>
@@ -206,15 +208,16 @@
 <section class="spotify-section">
     <div class="spotify-container">
         
-        <span class="spotify-subtitle">LA FIESTA</span>
+        <span class="spotify-subtitle" id="txtPartySub">LA FIESTA</span>
         <h2 class="spotify-title-script">Playlist </h2>
-        <p class="spotify-desc">¿Qué tema no puede faltar en la fiesta? ¡Sumá tus canciones favoritas a nuestra playlist colaborativa!</p>
+        <p class="spotify-desc" id="txtSpotifyDesc">¿Qué tema no puede faltar en la fiesta? ¡Sumá tus canciones favoritas a nuestra playlist colaborativa!</p>
 
         <!-- Botón de sugerir canción con enlace colaborativo de Spotify -->
         <div class="spotify-action-wrapper">
             <a href="https://open.spotify.com/playlist/3Q5fk6meipoBRatbB82AUR?si=60645e689e6e44a8&pt=eec9ab2593d87cd419bb36f16ec49990" 
                target="_blank" 
                class="editorial-spotify-link"
+               id="txtSpotifyBtn"
                title="Sumar canciones a la playlist">
                 SUGERIR CANCIÓN
             </a>
@@ -243,9 +246,9 @@
 <section class="gifts-section">
     <div class="gifts-container">
         
-        <span class="gifts-subtitle">DETALLES</span>
-        <h2 class="gifts-title-script">Regalos</h2>
-        <p class="gifts-intro">
+        <span class="gifts-subtitle" id="txtGiftsSub">DETALLES</span>
+        <h2 class="gifts-title-script" id="txtGiftsTitle">Regalos</h2>
+        <p class="gifts-intro" id="txtGiftsDesc">
             Lo más importante es compartir este día con ustedes. Si desean tener un gesto con nosotros para nuestra nueva etapa, pueden hacerlo aquí:
         </p>
         
@@ -253,23 +256,23 @@
             
             <!-- Opción Cuenta Nacional -->
             <div class="gift-accordion-item">
-                <button class="gift-trigger-link" onclick="toggleGiftDetails('nacional')">
+                <button class="gift-trigger-link" onclick="toggleGiftDetails('nacional')" id="txtBtnNac">
                     VER DATOS BANCARIOS (ARGENTINA)
                 </button>
                 <div id="gift-nacional" class="gift-details hidden">
                     <p><span>Alias:</span> marcos.y.betty.boda</p>
                     <p><span>CBU:</span> 0000003100012345678910</p>
-                    <p><span>Titular:</span> Marcos o Betty</p>
+                    <p><span id="txtTitularNac">Titular:</span> Marcos o Betty</p>
                 </div>
             </div>
 
             <!-- Opción Cuenta Internacional -->
             <div class="gift-accordion-item">
-                <button class="gift-trigger-link" onclick="toggleGiftDetails('internacional')">
+                <button class="gift-trigger-link" onclick="toggleGiftDetails('internacional')" id="txtBtnInt">
                     VER DATOS BANCARIOS (INTERNACIONAL)
                 </button>
                 <div id="gift-internacional" class="gift-details hidden">
-                    <p><span>Banco:</span> Wise / Revolut</p>
+                    <p><span id="txtBancoInt">Banco:</span> Wise / Revolut</p>
                     <p><span>IBAN / Account:</span> US63SWIS00000012345678</p>
                     <p><span>Swift/BIC:</span> SWISUS33XXX</p>
                 </div>
@@ -288,22 +291,22 @@
       
       <!-- Tarjeta superior limpia y editorial (sin estilos en línea) -->
       <div class="card">
-          <span class="guest-label">Invitados</span>
+          <span class="guest-label" id="txtGuestLabel">Invitados</span>
           <h3 id="familyName"></h3>
           <p id="slots"></p>
       </div>
 
       <div class="rsvp-header-block">
-        <span class="rsvp-subtitle">ASISTENCIA</span>
+        <span class="rsvp-subtitle" id="txtRsvpSub">ASISTENCIA</span>
         <h2 class="title-script">RSVP</h2>
-        <p class="limit">Confirmar antes del 24 de Septiembre 2026</p>
+        <p class="limit" id="txtRsvpLimit">Confirmar antes del 24 de Septiembre 2026</p>
       </div>
 
       <!-- Contenedor donde el script generará dinámicamente los campos de cada invitado -->
       <div id="guests"></div>
       
-      <p id="formError" class="form-error hidden">Por favor completá los campos obligatorios.</p>
-      
+<p id="formError" class="form-error hidden" style="display: none;">Por favor completá los campos obligatorios.</p>
+
       <div style="display:none !important;" aria-hidden="true">
         <input type="text" id="validationCode" name="validation_code" tabindex="-1" autocomplete="off">
       </div>
@@ -323,7 +326,7 @@
     </div>
 </div>
 
-<!-- MODAL DE AGRADECIMIENTO -->
+<!-- MODAL DE AGRADECIMIENTO (DUPLICADO ORIGINAL) -->
 <div id="thanksModal" class="modal hidden">
     <div class="modal-content">
         <i class="fa-solid fa-circle-check modal-icon"></i>
@@ -333,10 +336,26 @@
     </div>
 </div>
     </main>
-
-  <footer>
-    <p>Una experiencia creada por <a href="https://atelierinvitaciones.com/" target="_blank" rel="noopener">Atelier Invitaciones</a></p>
-  </footer>
+<!-- =========================================
+     SECCIÓN: COMPARTIR FOTOS (DRIVE)
+     ========================================= -->
+<section class="photo-upload-section reveal" id="photoSection">
+  <div class="container">
+  <div class="photo-upload-inner">
+    <span class="section-subtitle" id="txtPhotoSub">RECUERDOS</span>
+    <h2 class="photo-title" id="txtPhotoTitle">Subir fotos de la boda</h2>
+    <p class="photo-desc" id="txtPhotoDesc">
+        Queremos revivir nuestro día a través de sus ojos. Compartinos las fotos y videos que saquen durante la celebración.
+    </p>
+    <a href="AQUI_PEGA_TU_LINK_DE_GOOGLE_DRIVE" target="_blank" rel="noopener noreferrer" class="editorial-drive-btn" id="txtPhotoBtn">
+        <i class="fa-solid fa-cloud-arrow-up"></i> SUBIR FOTOS
+    </a>
+</div>
+  </div>
+</section>
+<footer>
+    <p><span id="footer-credito">Una experiencia creada por</span> <a href="https://atelierinvitaciones.com/" target="_blank" rel="noopener">Atelier Invitaciones</a></p>
+</footer>
     <script src="script.js"></script>
 </body>
 </html>

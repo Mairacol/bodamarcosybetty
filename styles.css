@@ -41,7 +41,7 @@ body {
 }
 
 /* =========================================
-   INTRODUCCIÓN EDITORIAL AUTOMÁTICA
+   INTRODUCCIÓN: TRAZO LENTO Y LUJO
    ========================================= */
 .intro-overlay {
     position: fixed;
@@ -50,65 +50,98 @@ body {
     width: 100%;
     height: 100%;
     background-color: #ffffff;
-    color: #000000;
+    color: #111111;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    /* Pasamos la transición a 1.8 segundos con efecto ease-in-out */
-    transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 1.8s ease;
+    /* Transición de salida más pausada y elegante (1.8s) */
+    transition: transform 1.8s cubic-bezier(0.77, 0, 0.175, 1), visibility 1.8s ease;
+    transform: translateY(0);
 }
 
 .intro-overlay.hidden {
-    opacity: 0;
+    transform: translateY(-100%);
     visibility: hidden;
     pointer-events: none;
 }
 
 .intro-content {
     text-align: center;
-    opacity: 0;
-    transform: translateY(15px);
-    animation: fadeInContent 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 0.2s;
+    width: 100%;
+    max-width: 500px;
+    padding: 0 20px;
 }
 
-.intro-monogram {
+.intro-svg {
+    width: 100%;
+    height: 140px;
+    overflow: visible;
+}
+
+.animated-monogram {
     font-family: var(--font-script);
     font-size: 7.5rem;
-    color: #000000;
-    margin-bottom: 5px;
-    letter-spacing: 2px;
+    fill: none;
+    stroke: #111111;
+    stroke-width: 1.5;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    /* Duración de escritura extendida a 3.5 segundos para que se luzca */
+    animation: drawText 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: 0.4s;
+}
+
+.intro-divider {
+    width: 30px;
+    height: 1px;
+    background-color: #111111;
+    margin: 10px auto 20px auto;
+    opacity: 0;
+    animation: fadeInDivider 1.2s ease forwards;
+    animation-delay: 3.2s; /* Aparece con calma tras el monograma */
 }
 
 .intro-subtitle {
     font-family: var(--font-heading);
-    font-size: 0.9rem;
-    letter-spacing: 6px;
+    font-size: 1.25rem; /* Aumentado para mayor presencia */
+    letter-spacing: 8px; /* Mayor espacio entre letras para darle estilo de alta gama */
     text-transform: uppercase;
-    margin-bottom: 25px;
-    color: #555555;
-    font-weight: 400;
+    color: #333333;
+    font-weight: 300;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInSubtitle 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 3.6s;
+}
+/* Animaciones pausadas */
+@keyframes drawText {
+    0% {
+        stroke-dashoffset: 600;
+        fill: transparent;
+    }
+    85% {
+        stroke-dashoffset: 0;
+        fill: transparent;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        fill: #111111; /* Se rellena al final con finura */
+    }
 }
 
-.loader-line {
-    width: 40px;
-    height: 1px;
-    background-color: #000000;
-    margin: 0 auto;
-    animation: expandLine 1.8s ease-in-out infinite alternate;
+@keyframes fadeInDivider {
+    to {
+        opacity: 0.4;
+        width: 50px;
+    }
 }
 
-@keyframes fadeInContent {
+@keyframes fadeInSubtitle {
     to {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-@keyframes expandLine {
-    0% { width: 20px; opacity: 0.3; }
-    100% { width: 60px; opacity: 1; }
 }
 /* =========================================
    REPRODUCTOR DE MÚSICA FLOTANTE
@@ -1092,6 +1125,89 @@ section {
     font-size: 0.65rem;
     border-radius: 2px;
 }
+/* =========================================
+   ESTILOS: SECCIÓN DE FOTOS (EDITORIAL)
+   ========================================= */
+.photo-upload-section {
+    background-color: #ffffff;
+    padding: 80px 24px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    border-top: 1px solid #eaeaea; /* Línea sutil de separación con la sección anterior */
+}
+
+.photo-upload-inner {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.photo-upload-inner .section-subtitle {
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    letter-spacing: 6px;
+    color: #777777;
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.photo-upload-inner .photo-title {
+    font-family: var(--font-script);
+    font-size: clamp(2.5rem, 6vw, 3.2rem);
+    color: #111111;
+    letter-spacing: normal;
+    text-transform: none;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.photo-desc {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    color: #555555;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    margin-bottom: 35px;
+    font-weight: 300;
+}
+
+/* Botón estilo editorial minimalista */
+.editorial-drive-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 320px;
+    background-color: #111111;
+    color: #ffffff;
+    border: none;
+    padding: 16px 24px;
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border-radius: 0px;
+    box-sizing: border-box;
+}
+
+.editorial-drive-btn:hover {
+    opacity: 0.75;
+    transform: translateY(-2px);
+}
+
+.editorial-drive-btn i {
+    font-size: 0.9rem;
+}
 footer {
   margin-top: 50px;
   padding: 20px;
@@ -1111,4 +1227,23 @@ footer a {
   text-decoration: none;
   font-weight: bold;
   border-bottom: 1px solid #ccc;
+}
+/* 1. Estilo base de las opciones (opcional, para asegurar consistencia) */
+.editorial-select.comida option {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000;             /* Texto negro */
+}
+
+
+
+/* 3. Estilo para la opción que ya ha sido seleccionada (cuando el menú se vuelve a abrir) */
+.editorial-select.comida option:checked,
+.editorial-select.comida option:checked:hover { /* Forzar el hover sobre la seleccionada */
+    background-color: #000000; /* Fondo negro para la seleccionada */
+    color: #ffffff;           /* Texto blanco para la seleccionada */
+}
+/* Intento avanzado para forzar color mediante sombra interna en navegadores compatibles */
+.editorial-select.comida option:hover {
+    box-shadow: 0 0 10px 100px #000000 inset !important;
+    color: #ffffff !important;
 }

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boda de Marcos & Betty | 28.11.2026</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts for wedding typography style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Allura&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- INTRODUCCIÓN CON INICIALES (M & B) -->
+<!-- INTRODUCCIÓN EDITORIAL AUTOMÁTICA (FONDO BLANCO) -->
+    <div id="intro-overlay" class="intro-overlay">
+        <div class="intro-content">
+            <h1 class="intro-monogram">M & B</h1>
+            <p class="intro-subtitle">Nuestra Boda</p>
+            <div class="loader-line"></div>
+        </div>
+    </div>
+
+    <!-- REPRODUCTOR DE MÚSICA DE FONDO (Con botón de pausa/reproducir) -->
+    <div class="music-player-floating">
+        <audio id="bgMusic" loop>
+            <!-- Royalty free romantic wedding background music link or placeholder -->
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=romantic-guitars-112133.mp3" type="audio/mpeg">
+            Tu navegador no soporta audio.
+        </audio>
+        <button id="musicToggleBtn" class="music-btn" title="Pausar / Reproducir música">
+            <i id="musicIcon" class="fa-solid fa-music"></i>
+            <span id="musicText">Música</span>
+        </button>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL DE LA INVITACIÓN -->
+    <main class="main-container">
+
+
+<!-- HERO SECTION (PANTALLA DE APERTURA LIMPIA) -->
+<section class="hero-section">
+    
+    <!-- SUBTÍTULO -->
+    <div class="hero-subtitle-wrapper">
+        <span class="hero-subtitle">NOS CASAMOS</span>
+    </div>
+
+    <!-- NOMBRES (PROTAGONISTAS) -->
+    <div class="hero-names-group">
+        <h1 class="hero-names">
+            Marcos 
+            <span class="ampersand-inline">&</span> 
+            Betty
+        </h1>
+    </div>
+    
+    <!-- INDICADOR DE SCROLL SUTIL -->
+    <div class="scroll-indicator">
+        <span>DESLIZAR</span>
+        <div class="scroll-line"></div>
+    </div>
+
+</section>
+
+<!-- SECCIÓN DE REVELACIÓN: ILUSTRACIÓN + FECHA Y ACCIÓN -->
+<section class="reveal-section">
+    
+    <!-- ILUSTRACIÓN ANIMADA -->
+    <div class="hero-illustration">
+        <img src="/images/globom+b.png" alt="Marcos y Betty Ilustración" class="illustration-img">
+    </div>
+<!-- FECHA Y ACCIÓN EDITORIAL -->
+<div class="hero-date-action-block">
+    <div class="hero-date-script">
+        28 / 11 / 2026
+    </div>
+    <div class="hero-agendar-wrapper">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Marcos+%26+Betty&dates=20261128T160000Z%2F20261129T040000Z&details=¡Te+invitamos+a+celebrar+nuestra+boda!&location=Argentina" 
+           target="_blank" 
+           class="editorial-agendar-link"
+           title="Agregar a mi calendario">
+            AGENDAR FECHA 
+        </a>
+    </div>
+</div>
+
+</section>
+<!-- =========================================
+     SECCIÓN LUGAR Y UBICACIÓN (ESTILO EDITORIAL)
+     ========================================= -->
+<section class="venue-editorial-section">
+    <div class="venue-editorial-container">
+        
+        <!-- Logo de la quinta -->
+        <div class="venue-logo-wrapper">
+            <img src="/images/arbolquinta.png" alt="Quinta Los Galpones" class="venue-logo-img">
+        </div>
+
+        <!-- Título -->
+        <h2 class="venue-title">Quinta Los Galpones</h2>
+        <p class="venue-text">Te esperamos para celebrar este momento único juntos.</p>
+
+        <!-- Enlace al mapa minimalista (Sin botón pesado) -->
+        <div class="venue-link-wrapper">
+            <a href="https://maps.app.goo.gl/3S4tzLSLaTLVGQG59" 
+               target="_blank" 
+               class="editorial-map-link"
+               title="Ver mapa en Google Maps">
+                VER MAPA 
+            </a>
+        </div>
+
+    </div>
+</section>
+<!-- =========================================
+     SECCIÓN CRONOGRAMA - BLOQUES LIBRES (EDITORIAL)
+     ========================================= -->
+<section class="cronograma-section">
+    <div class="cronograma-container">
+        
+        <span class="cronograma-subtitle">EL GRAN DÍA</span>
+        <h2 class="cronograma-title-script">Cronograma</h2>
+
+        <!-- Contenedor con espacio generoso entre eventos -->
+        <div class="free-timeline">
+            
+            <div class="timeline-block">
+                <span class="block-time">18:00 hs</span>
+                <h3 class="block-event">Recepción</h3>
+            </div>
+
+            <div class="timeline-block">
+                <span class="block-time">19:00 hs</span>
+                <h3 class="block-event">Ceremonia</h3>
+            </div>
+
+            <div class="timeline-block">
+                <span class="block-time">20:30 hs</span>
+                <h3 class="block-event">Cena & Fiesta</h3>
+            </div>
+
+            <div class="timeline-block">
+                <span class="block-time">02:00 hs</span>
+                <h3 class="block-event">Cierre</h3>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<!-- =========================================
+     SECCIÓN DRESS CODE (IMÁGENES GRANDES Y LIMPIAS)
+     ========================================= -->
+<section class="dresscode-section">
+    <div class="dresscode-container">
+        
+        <span class="dresscode-subtitle">CÓDIGO DE VESTIMENTA</span>
+        <h2 class="dresscode-title-script">Dress Code</h2>
+        <p class="dresscode-main-type">Elegante / Cocktail</p>
+
+        <!-- Contenedor dual principal -->
+        <div class="dresscode-grid">
+            
+            <!-- Bloque Mujeres -->
+            <div class="dresscode-card">
+                <h3 class="dresscode-category">Mujeres</h3>
+                <div class="dresscode-double-img-wrapper">
+                    <div class="dresscode-sub-img">
+                        <img src="/images/betty.png" alt="Vestido Largo" class="dresscode-illus">
+                        <span class="sub-label">Largo</span>
+                    </div>
+                    <div class="dresscode-sub-img">
+                        <img src="/images/bettycorto.png" alt="Vestido Corto" class="dresscode-illus">
+                        <span class="sub-label">Corto</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bloque Hombres -->
+            <div class="dresscode-card">
+                <h3 class="dresscode-category">Hombres</h3>
+                <div class="dresscode-double-img-wrapper">
+                    <div class="dresscode-sub-img">
+                        <img src="/images/marcoscorbata.png" alt="Con Corbata" class="dresscode-illus">
+                        <span class="sub-label">Con Corbata</span>
+                    </div>
+                    <div class="dresscode-sub-img">
+                        <img src="/images/marcos.png" alt="Sin Corbata" class="dresscode-illus">
+                        <span class="sub-label">Sin Corbata</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+        
+<!-- =========================================
+     SECCIÓN MÚSICA & PLAYLIST DE SPOTIFY
+     ========================================= -->
+<section class="spotify-section">
+    <div class="spotify-container">
+        
+        <span class="spotify-subtitle">LA FIESTA</span>
+        <h2 class="spotify-title-script">Playlist </h2>
+        <p class="spotify-desc">¿Qué tema no puede faltar en la fiesta? ¡Sumá tus canciones favoritas a nuestra playlist colaborativa!</p>
+
+        <!-- Botón de sugerir canción con enlace colaborativo de Spotify -->
+        <div class="spotify-action-wrapper">
+            <a href="https://open.spotify.com/playlist/3Q5fk6meipoBRatbB82AUR?si=60645e689e6e44a8&pt=eec9ab2593d87cd419bb36f16ec49990" 
+               target="_blank" 
+               class="editorial-spotify-link"
+               title="Sumar canciones a la playlist">
+                SUGERIR CANCIÓN
+            </a>
+        </div>
+
+        <!-- Reproductor de Spotify integrado (Iframe adaptado al diseño limpio) -->
+        <div class="spotify-player-wrapper">
+            <iframe data-testid="embed-iframe" 
+                    style="border-radius:16px; border: none;" 
+                    src="https://open.spotify.com/embed/playlist/3Q5fk6meipoBRatbB82AUR?utm_source=generator&si=b5a45083eb4747c6" 
+                    width="100%" 
+                    height="352" 
+                    frameBorder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy">
+            </iframe>
+        </div>
+
+    </div>
+</section>
+
+       <!-- =========================================
+     SECCIÓN REGALOS (ESTILO EDITORIAL DISCRETO)
+     ========================================= -->
+<section class="gifts-section">
+    <div class="gifts-container">
+        
+        <span class="gifts-subtitle">DETALLES</span>
+        <h2 class="gifts-title-script">Regalos</h2>
+        <p class="gifts-intro">
+            Lo más importante es compartir este día con ustedes. Si desean tener un gesto con nosotros para nuestra nueva etapa, pueden hacerlo aquí:
+        </p>
+        
+        <div class="gifts-links-wrapper">
+            
+            <!-- Opción Cuenta Nacional -->
+            <div class="gift-accordion-item">
+                <button class="gift-trigger-link" onclick="toggleGiftDetails('nacional')">
+                    VER DATOS BANCARIOS (ARGENTINA)
+                </button>
+                <div id="gift-nacional" class="gift-details hidden">
+                    <p><span>Alias:</span> marcos.y.betty.boda</p>
+                    <p><span>CBU:</span> 0000003100012345678910</p>
+                    <p><span>Titular:</span> Marcos o Betty</p>
+                </div>
+            </div>
+
+            <!-- Opción Cuenta Internacional -->
+            <div class="gift-accordion-item">
+                <button class="gift-trigger-link" onclick="toggleGiftDetails('internacional')">
+                    VER DATOS BANCARIOS (INTERNACIONAL)
+                </button>
+                <div id="gift-internacional" class="gift-details hidden">
+                    <p><span>Banco:</span> Wise / Revolut</p>
+                    <p><span>IBAN / Account:</span> US63SWIS00000012345678</p>
+                    <p><span>Swift/BIC:</span> SWISUS33XXX</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================================
+     SECCIÓN RSVP (CONFIRMACIÓN DE ASISTENCIA)
+     ========================================= -->
+<section class="rsvp reveal" id="rsvpSection">
+  <div class="container">
+    <div class="rsvp-inner">
+      
+      <!-- Tarjeta superior limpia y editorial (sin estilos en línea) -->
+      <div class="card">
+          <span class="guest-label">Invitados</span>
+          <h3 id="familyName"></h3>
+          <p id="slots"></p>
+      </div>
+
+      <div class="rsvp-header-block">
+        <span class="rsvp-subtitle">ASISTENCIA</span>
+        <h2 class="title-script">RSVP</h2>
+        <p class="limit">Confirmar antes del 24 de Septiembre 2026</p>
+      </div>
+
+      <!-- Contenedor donde el script generará dinámicamente los campos de cada invitado -->
+      <div id="guests"></div>
+      
+      <p id="formError" class="form-error hidden">Por favor completá los campos obligatorios.</p>
+      
+      <div style="display:none !important;" aria-hidden="true">
+        <input type="text" id="validationCode" name="validation_code" tabindex="-1" autocomplete="off">
+      </div>
+      
+      <button id="submitBtn" class="editorial-submit-btn">ENVIAR CONFIRMACIÓN</button>
+    </div>
+  </div>
+</section>
+
+<!-- MODAL DE AGRADECIMIENTO -->
+<div id="thanksModal" class="modal hidden">
+    <div class="modal-content">
+        <i class="fa-solid fa-circle-check modal-icon"></i>
+        <h3>¡Muchas gracias!</h3>
+        <p>Tu respuesta ha sido registrada con éxito.</p>
+        <button onclick="closeThanksModal()" class="modal-btn">Cerrar</button>
+    </div>
+</div>
+
+<!-- MODAL DE AGRADECIMIENTO -->
+<div id="thanksModal" class="modal hidden">
+    <div class="modal-content">
+        <i class="fa-solid fa-circle-check modal-icon"></i>
+        <h3>¡Muchas gracias!</h3>
+        <p>Tu respuesta ha sido registrada con éxito.</p>
+        <button onclick="closeThanksModal()" class="modal-btn">Cerrar</button>
+    </div>
+</div>
+    </main>
+
+  <footer>
+    <p>Una experiencia creada por <a href="https://atelierinvitaciones.com/" target="_blank" rel="noopener">Atelier Invitaciones</a></p>
+  </footer>
+    <script src="script.js"></script>
+</body>
+</html>

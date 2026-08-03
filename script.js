@@ -2,7 +2,7 @@
    SCRIPT PRINCIPAL DE LA INVITACIÓN (BILINGÜE & PERSONALIZADO)
    ========================================= */
 
-const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE";
+const SCRIPT_URL = "_GOOGLE_APPS_SCRIPT_URL_";
 
 // Leer los parámetros de la URL (?family=...&slots=...&lang=en)
 const urlParams = new URLSearchParams(window.location.search);

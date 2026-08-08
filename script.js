@@ -13,6 +13,9 @@ const slots = parseInt(urlParams.get('slots')) || 1;
 const translations = {
     es: {
         musicBtn: 'Música',
+        title: 'Betty & Marcos | 28.11.2026',
+        txtIntroDate: '28 . 11 . 2026',
+        txtHeroDate: '28 / 11 / 2026',
         heroSub: 'NOS CASAMOS',
         scroll: 'DESLIZAR',
         agendar: 'AGENDAR FECHA',
@@ -77,8 +80,11 @@ const translations = {
     },
     en: {
         musicBtn: 'Music ON',
+        title: "Betty & Marcos | 11.28.2026",
+        txtIntroDate: "11 . 28 . 2026",
         heroSub: 'WE ARE GETTING MARRIED',
         scroll: 'SCROLL',
+        txtHeroDate: "11 / 28 / 2026",
         agendar: 'ADD TO CALENDAR',
         venueDesc: 'We look forward to celebrating this unique moment together.',
         verMapa: 'VIEW MAP',
@@ -159,8 +165,12 @@ const thanksModal = document.getElementById('thanksModal');
 document.getElementById('footer-credito').textContent = t.footerCredito;
 let isPlaying = false;
 
-// Inyectar traducciones globales en toda la web al cargar
 document.addEventListener('DOMContentLoaded', () => {
+
+    //  Cambia el título de la pestaña del navegador
+    if (t.title) document.title = t.title;
+
+    // Función para los textos con ID
     const setText = (id, text) => {
         const el = document.getElementById(id);
         if (el) el.textContent = text;
@@ -168,6 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setText('musicText', t.musicBtn);
     setText('txtHeroSub', t.heroSub);
+    setText('txtIntroDate', t.txtIntroDate);
+    setText('txtHeroDate', t.txtHeroDate);
     setText('txtScroll', t.scroll);
     setText('txtAgendar', t.agendar);
     setText('txtVenueDesc', t.venueDesc);

@@ -471,3 +471,25 @@ function closeThanksModal() {
         thanksModal.classList.add('hidden');
     }
 }
+document.addEventListener("DOMContentLoaded", () => {
+  // Configuración del observer
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+  };
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        // Opcional: Dejar de observar si solo quieres que se anime la primera vez que aparece
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Seleccionar todas las secciones con la clase reveal y observarlas
+  const revealElements = document.querySelectorAll(".reveal");
+  revealElements.forEach(el => revealObserver.observe(el));
+});

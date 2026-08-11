@@ -1247,3 +1247,18 @@ footer a {
     box-shadow: 0 0 10px 100px #000000 inset !important;
     color: #ffffff !important;
 }
+/* =========================================
+   EFECTO SCROLL REVEAL ELEGANTE
+   ========================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+/* Estado activo cuando la sección entra en pantalla */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}

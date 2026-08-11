@@ -50,7 +50,7 @@ const translations = {
         passesAvailable: (n) => n === 1 ? '1 pase disponible' : `${n} pases disponibles`,
         asistenciaSub: 'ASISTENCIA',
         asistenciaTitle: 'RSVP',
-        limit: 'Confirmar antes del 24 de Septiembre 2026',
+        limit: 'Confirmar antes del 15 de Septiembre 2026',
         guestTitle: (i) => `Invitado ${i}`,
         nombrePlaceholder: 'Nombre *',
         apellidoPlaceholder: 'Apellido *',

@@ -107,7 +107,7 @@ body {
     font-size: 1.25rem; /* Aumentado para mayor presencia */
     letter-spacing: 8px; /* Mayor espacio entre letras para darle estilo de alta gama */
     text-transform: uppercase;
-    color: #333333;
+    color: #B2AC88;
     font-weight: 300;
     opacity: 0;
     transform: translateY(10px);
@@ -315,7 +315,7 @@ body {
 .hero-date-script {
     font-family: var(--font-script);
     font-size: clamp(2rem, 5vw, 2.5rem);
-    color: #111111;
+    color: #B2AC88;
     font-weight: 400;
     margin: 0;
     letter-spacing: 1px;
@@ -408,7 +408,7 @@ section {
 .venue-title {
     font-family: var(--font-script);
     font-size: 2.2rem; /* Un tamaño más generoso para que se luzca */
-    color: #111111;
+    color: #B2AC88;
     letter-spacing: normal; /* Quitamos el espaciado para que las letras se conecten */
     text-transform: none; /* Mantenemos las minúsculas/mayúsculas naturales de la fuente */
     font-weight: 400;
@@ -482,7 +482,7 @@ section {
 .cronograma-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #111111;
+    color: #B2AC88;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -559,7 +559,7 @@ section {
 .dresscode-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #111111;
+    color: #B2AC88;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -670,7 +670,7 @@ section {
 .spotify-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #111111;
+    color: #B2AC88;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -753,7 +753,7 @@ section {
 .gifts-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #111111;
+    color: #B2AC88;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -915,7 +915,7 @@ section {
 .rsvp-inner .title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #111111;
+    color: #B2AC88;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -1162,7 +1162,7 @@ section {
 .photo-upload-inner .photo-title {
     font-family: var(--font-script);
     font-size: clamp(2.5rem, 6vw, 3.2rem);
-    color: #111111;
+    color: #B2AC88;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;

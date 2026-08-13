@@ -1,9 +1,4 @@
-/* =========================================
-   VARIABLES & ESTILOS GENERALES (BLACK & WHITE EDITORIAL)
-   ========================================= */
-/* =========================================
-   DECLARACIÓN DE FUENTE LOCAL (Brittany Signature)
-   ========================================= */
+
 @font-face {
     font-family: 'Brittany Signature';
     src: url('fuentebritannysignature/BrittanySignature.ttf') format('truetype');
@@ -15,11 +10,13 @@
     --primary-color: #000000;
     --text-color: #1a1a1a;
     --gray-light: #f4f4f4;
+    --sage-green: #B2AC88;
     --gray-border: #d0d0d0;
-    --font-script: 'Brittany Signature', cursive; /* <-- Aquí la aplicamos */
+    --font-script: 'Brittany Signature', cursive; 
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Montserrat', sans-serif;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -87,7 +84,6 @@ body {
     stroke-width: 1.5;
     stroke-dasharray: 600;
     stroke-dashoffset: 600;
-    /* Duración de escritura extendida a 3.5 segundos para que se luzca */
     animation: drawText 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     animation-delay: 0.4s;
 }
@@ -99,15 +95,15 @@ body {
     margin: 10px auto 20px auto;
     opacity: 0;
     animation: fadeInDivider 1.2s ease forwards;
-    animation-delay: 3.2s; /* Aparece con calma tras el monograma */
+    animation-delay: 3.2s; 
 }
 
 .intro-subtitle {
     font-family: var(--font-heading);
-    font-size: 1.25rem; /* Aumentado para mayor presencia */
-    letter-spacing: 8px; /* Mayor espacio entre letras para darle estilo de alta gama */
+    font-size: 1.25rem; 
+    letter-spacing: 8px; 
     text-transform: uppercase;
-    color: #B2AC88;
+    color:#B2AC88;
     font-weight: 300;
     opacity: 0;
     transform: translateY(10px);
@@ -126,7 +122,7 @@ body {
     }
     100% {
         stroke-dashoffset: 0;
-        fill: #111111; /* Se rellena al final con finura */
+        fill: #111111; 
     }
 }
 
@@ -197,7 +193,7 @@ body {
     font-family: var(--font-heading);
     font-size: 0.75rem;
     letter-spacing: 10px;
-    color: #B2AC88;
+    color:  var(--sage-green);
     text-transform: uppercase;
     font-weight: 500;
 }
@@ -234,7 +230,7 @@ body {
     vertical-align: middle;
 }
 
-/* Indicador de scroll */
+
 .scroll-indicator {
     display: flex;
     flex-direction: column;
@@ -282,7 +278,7 @@ body {
    ILUSTRACIÓN PROTAGONISTA AMPLIADA
    ========================================= */
 .hero-illustration {
-    max-width: 400px; /* Aumentamos el tamaño para darle mayor presencia y jerarquía */
+    max-width: 400px;
     width: 100%;
     margin: 0 auto 50px auto;
     animation: float 4s ease-in-out infinite;
@@ -315,7 +311,7 @@ body {
 .hero-date-script {
     font-family: var(--font-script);
     font-size: clamp(2rem, 5vw, 2.5rem);
-    color: #B2AC88;
+    color:  var(--sage-green);
     font-weight: 400;
     margin: 0;
     letter-spacing: 1px;
@@ -336,7 +332,7 @@ body {
     text-decoration: none;
     font-weight: 500;
     padding-bottom: 4px;
-    border-bottom: 1px solid #B2AC88;/* Línea fina minimalista debajo */
+    border-bottom: 1px solid #B2AC88;
     transition: opacity 0.3s ease;
 }
 
@@ -403,14 +399,14 @@ section {
 }
 
 /* =========================================
-   TÍTULO CON TIPOGRAFÍA MANUSCRITA (CORRECTO)
+   TIPOGRAFÍA MANUSCRITA 
    ========================================= */
 .venue-title {
     font-family: var(--font-script);
     font-size: 2.2rem; /* Un tamaño más generoso para que se luzca */
-    color: #B2AC88;
-    letter-spacing: normal; /* Quitamos el espaciado para que las letras se conecten */
-    text-transform: none; /* Mantenemos las minúsculas/mayúsculas naturales de la fuente */
+    color:  var(--sage-green);
+    letter-spacing: normal; 
+    text-transform: none; 
     font-weight: 400;
     margin-bottom: 15px;
 }
@@ -425,7 +421,7 @@ section {
     line-height: 1.6;
 }
 
-/* --- Enlace al Mapa Estilo Tipográfico (Reemplaza al botón) --- */
+/* --- Enlace al Mapa  --- */
 .venue-link-wrapper {
     display: inline-block;
 }
@@ -439,7 +435,7 @@ section {
     text-decoration: none;
     font-weight: 500;
     padding-bottom: 4px;
-    border-bottom: 1px solid #B2AC88; /* Línea fina y elegante debajo del texto */
+    border-bottom: 1px solid #B2AC88;
     transition: opacity 0.3s ease;
 }
 
@@ -471,7 +467,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color: #B2AC88;
+    color:  var(--sage-green);
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -482,7 +478,7 @@ section {
 .cronograma-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #B2AC88;
+    color:  var(--sage-green);
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -519,7 +515,7 @@ section {
 .timeline-block .block-event {
     font-family: var(--font-heading);
     font-size: 1.25rem;
-    color: #111111;
+    color:  var(--sage-green);
     font-weight: 300;
     letter-spacing: 2px;
     margin: 0;
@@ -549,7 +545,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color: #B2AC88;
+    color:  var(--sage-green);
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -559,7 +555,7 @@ section {
 .dresscode-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #B2AC88;
+    color:  var(--sage-green);
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -569,14 +565,14 @@ section {
 .dresscode-main-type {
     font-family: var(--font-heading);
     font-size: 0.85rem;
-    color: #B2AC88;
+    color:  var(--sage-green);
     letter-spacing: 4px;
     text-transform: uppercase;
     font-weight: 300;
     margin-bottom: 70px;
 }
 
-/* Grilla principal en columna para apilar mujeres arriba y hombres abajo (o en fila si prefieres) */
+/* */
 .dresscode-grid {
     display: flex;
     flex-direction: column;
@@ -603,7 +599,7 @@ section {
     margin-bottom: 25px;
 }
 
-/* Contenedor para poner las dos ilustraciones lado a lado con gran tamaño */
+
 .dresscode-double-img-wrapper {
     display: flex;
     justify-content: center;
@@ -616,7 +612,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 135px; /* ¡Aumentado notablemente para que se luzcan en grande! */
+    width: 135px; 
 }
 
 .dresscode-illus {
@@ -660,7 +656,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color: #B2AC88;
+    color:  var(--sage-green);
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -670,7 +666,7 @@ section {
 .spotify-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #B2AC88;
+    color:  var(--sage-green);
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -710,11 +706,11 @@ section {
     opacity: 0.6;
 }
 
-/* Contenedor del reproductor para que se vea elegante en móviles */
+/* Contenedor del reproductor  */
 .spotify-player-wrapper {
     width: 100%;
     max-width: 500px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* Sombra ultra suave y sutil */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); 
     border-radius: 16px;
     overflow: hidden;
 }
@@ -743,7 +739,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color: #B2AC88;
+    color:  var(--sage-green);
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -753,7 +749,7 @@ section {
 .gifts-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #B2AC88;
+    color:  var(--sage-green);
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -805,13 +801,13 @@ section {
     opacity: 0.6;
 }
 
-/* Desplegable de datos bancarios con estética limpia */
+
 .gift-details {
     margin-top: 20px;
     padding: 20px;
     width: 100%;
     max-width: 400px;
-    background-color: #fafafa; /* Fondo ultra sutil */
+    background-color: #fafafa;
     border-radius: 4px;
     text-align: left;
     font-family: var(--font-heading);
@@ -851,14 +847,14 @@ section {
 }
 
 /* =========================================
-   TARJETA DE INVITADO - ESTILO BOUTIQUE & LUJO
+   TARJETA DE INVITADO 
    ========================================= */
 .rsvp-inner .card {
     background: #ffffff;
     padding: 35px 30px;
-    border: 1px solid #e0e0e0; /* Un marco perimetral ultra fino y discreto */
+    border: 1px solid #e0e0e0; 
     border-radius: 2px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); /* Sombra casi imperceptible, da efecto flotante */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02); 
     margin-bottom: 45px;
     text-align: center;
 }
@@ -1139,7 +1135,7 @@ section {
     display: flex;
     justify-content: center;
     text-align: center;
-    border-top: 1px solid #eaeaea; /* Línea sutil de separación con la sección anterior */
+    border-top: 1px solid #eaeaea; 
 }
 
 .photo-upload-inner {
@@ -1233,19 +1229,19 @@ footer a {
 }
 /* 1. Estilo base de las opciones (opcional, para asegurar consistencia) */
 .editorial-select.comida option {
-    background-color: #ffffff; /* Fondo blanco */
-    color: #000000;             /* Texto negro */
+    background-color: #ffffff;
+    color: #000000;             
 }
 
 
 
-/* 3. Estilo para la opción que ya ha sido seleccionada (cuando el menú se vuelve a abrir) */
+/* */
 .editorial-select.comida option:checked,
-.editorial-select.comida option:checked:hover { /* Forzar el hover sobre la seleccionada */
-    background-color: #000000; /* Fondo negro para la seleccionada */
-    color: #ffffff;           /* Texto blanco para la seleccionada */
+.editorial-select.comida option:checked:hover {
+    background-color: #000000; 
+    color: #ffffff;          
 }
-/* Intento avanzado para forzar color mediante sombra interna en navegadores compatibles */
+
 .editorial-select.comida option:hover {
     box-shadow: 0 0 10px 100px #000000 inset !important;
     color: #ffffff !important;
@@ -1260,7 +1256,7 @@ footer a {
   will-change: opacity, transform;
 }
 
-/* Estado activo cuando la sección entra en pantalla */
+
 .reveal.active {
   opacity: 1;
   transform: translateY(0);

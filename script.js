@@ -239,43 +239,74 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // =========================================
-// INTRODUCCIÓN AUTOMÁTICA & MÚSICA DE FONDO
+// INTRODUCCIÓN & MÚSICA DE FONDO (MÓVILES + DESKTOP)
 // =========================================
-setTimeout(() => {
+
+// Función para actualizar el estado visual del botón flotante
+function updateMusicUI(playing) {
+    isPlaying = playing;
+    if (!musicToggleBtn) return;
+
+    if (isPlaying) {
+        musicToggleBtn.classList.add('playing');
+        if (musicIcon) musicIcon.className = "fa-solid fa-volume-high";
+        if (musicText) musicText.textContent = lang === 'en' ? "Music ON" : "Música ON";
+    } else {
+        musicToggleBtn.classList.remove('playing');
+        if (musicIcon) musicIcon.className = "fa-solid fa-volume-xmark";
+        if (musicText) musicText.textContent = lang === 'en' ? "Paused" : "Pausado";
+    }
+}
+
+// 1. Ocultar overlay automáticamente a los 6s (si el usuario no interactuó antes)
+const autoHideTimer = setTimeout(() => {
     if (introOverlay) {
         introOverlay.classList.add('hidden');
-        
-        if (bgMusic) {
-            bgMusic.play().then(() => {
-                isPlaying = true;
-                if (musicToggleBtn) musicToggleBtn.classList.add('playing');
-                if (musicIcon) musicIcon.className = "fa-solid fa-volume-high";
-                if (musicText) musicText.textContent = lang === 'en' ? "Music ON" : "Música ON";
-            }).catch(e => {
-                console.log("Audio autoplay restricted by browser:", e);
-            });
-        }
     }
-}, 6000); 
+}, 6000);
 
+// 2. Iniciar audio al primer toque/clic en cualquier parte de la pantalla (o sobre el overlay)
+const startAudioOnInteraction = () => {
+    // Si la intro sigue visible, la ocultamos de inmediato al interactuar
+    if (introOverlay && !introOverlay.classList.contains('hidden')) {
+        introOverlay.classList.add('hidden');
+        clearTimeout(autoHideTimer); // Cancelar el timer si el usuario ya tocó la pantalla
+    }
+
+    if (!isPlaying && bgMusic) {
+        bgMusic.play().then(() => {
+            updateMusicUI(true);
+        }).catch(e => {
+            console.log("Audio autoplay restringido por el navegador:", e);
+        });
+    }
+
+    // Limpiar escuchadores una vez ejecutado el primer toque
+    document.removeEventListener('click', startAudioOnInteraction);
+    document.removeEventListener('touchstart', startAudioOnInteraction);
+};
+
+// Escuchadores globales para la primera interacción
+document.addEventListener('click', startAudioOnInteraction);
+document.addEventListener('touchstart', startAudioOnInteraction);
+
+// 3. Control manual mediante el botón flotante de música
 if (musicToggleBtn) {
-    musicToggleBtn.addEventListener('click', () => {
+    musicToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Evita re-disparar startAudioOnInteraction
+        
+        if (!bgMusic) return;
+
         if (isPlaying) {
             bgMusic.pause();
-            isPlaying = false;
-            musicToggleBtn.classList.remove('playing');
-            musicIcon.className = "fa-solid fa-volume-xmark";
-            musicText.textContent = lang === 'en' ? "Paused" : "Pausado";
+            updateMusicUI(false);
         } else {
-            bgMusic.play();
-            isPlaying = true;
-            musicToggleBtn.classList.add('playing');
-            musicIcon.className = "fa-solid fa-volume-high";
-            musicText.textContent = lang === 'en' ? "Music ON" : "Música ON";
+            bgMusic.play().then(() => {
+                updateMusicUI(true);
+            }).catch(e => console.log("Error al reproducir:", e));
         }
     });
 }
-
 // =========================================
 // 2. GENERAR CAMPOS DE INVITADOS AUTOMÁTICAMENTE
 // =========================================

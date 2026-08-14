@@ -4,11 +4,15 @@
 
 const SCRIPT_URL = "_GOOGLE_APPS_SCRIPT_URL_";
 
-// Leer los parámetros de la URL (?family=...&slots=...&lang=en)
+// 1. LEER PARÁMETROS DE LA URL
 const urlParams = new URLSearchParams(window.location.search);
 const lang = urlParams.get('lang') || 'es';
-const family = urlParams.get('family') || (lang === 'en' ? 'Special Guest' : 'Invitado Especial');
+
+// 'hasFamilyParam' comprueba si existe la variable 'family' en el link
+const hasFamilyParam = urlParams.has('family');
+const family = urlParams.get('family'); 
 const slots = parseInt(urlParams.get('slots')) || 1;
+
 // Diccionario de textos ampliado para toda la web según el idioma
 const translations = {
     es: {
@@ -47,7 +51,7 @@ const translations = {
         btnInt: 'VER DATOS BANCARIOS (INTERNACIONAL)',
         bancoInt: 'Banco:',
         guestLabel: 'Invitados',
-       // passesAvailable: (n) => n === 1 ? '1 lugar reservado' : `${n} lugares reservados`,
+        passesAvailable: (n) => n === 1 ? '1 lugar reservado' : `${n} lugares reservados`,
         asistenciaSub: 'ASISTENCIA',
         asistenciaTitle: 'RSVP',
         limit: 'Confirmar antes del 15 de Septiembre 2026',
@@ -114,7 +118,7 @@ const translations = {
         btnInt: 'VIEW BANK DETAILS (INTERNATIONAL)',
         bancoInt: 'Bank:',
         guestLabel: 'Guests',
-       // passesAvailable: (n) => n === 1 ? '1 seat reserved' : `${n} seats reserved`,
+        passesAvailable: (n) => n === 1 ? '1 seat reserved' : `${n} seats reserved`,
         asistenciaSub: 'ATTENDANCE',
         asistenciaTitle: 'RSVP',
         limit: 'Please RSVP by September 15, 2026',
@@ -162,12 +166,31 @@ const musicToggleBtn = document.getElementById('musicToggleBtn');
 const musicIcon = document.getElementById('musicIcon');
 const musicText = document.getElementById('musicText');
 const thanksModal = document.getElementById('thanksModal');
-document.getElementById('footer-credito').textContent = t.footerCredito;
+
 let isPlaying = false;
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    //  Cambia el título de la pestaña del navegador
+    // -------------------------------------------------------------
+    // CONTROL EXCLUSIVO DE VISIBILIDAD DEL RSVP
+    // -------------------------------------------------------------
+    const rsvpSection = document.getElementById('rsvpSection');
+
+    if (rsvpSection) {
+        if (hasFamilyParam) {
+            // SI TIENE LINK PERSONALIZADO -> MOSTRAR RSVP
+            rsvpSection.style.display = 'block';
+        } else {
+            // SI NO TIENE LINK PERSONALIZADO (marcosybetty.com a secas) -> OCULTAR Y REMOVER
+            rsvpSection.style.display = 'none';
+            rsvpSection.remove(); // Elimina la sección del mapa HTML
+        }
+    }
+
+    const footerCreditoEl = document.getElementById('footer-credito');
+    if (footerCreditoEl) footerCreditoEl.textContent = t.footerCredito;
+
+    // Cambia el título de la pestaña del navegador
     if (t.title) document.title = t.title;
 
     // Función para los textos con ID
@@ -221,8 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
         photoBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> ${t.photoBtn}`;
     }
 
-    if (familyNameEl) familyNameEl.textContent = family;
-    if (slotsEl) slotsEl.textContent = t.passesAvailable(slots);
+    if (familyNameEl && family) familyNameEl.textContent = family;
+    if (slotsEl && t.passesAvailable) slotsEl.textContent = t.passesAvailable(slots);
 
     document.querySelectorAll('.rsvp-subtitle').forEach(el => el.textContent = t.asistenciaSub);
     document.querySelectorAll('.title-script').forEach(el => {
@@ -233,16 +256,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.limit').forEach(el => el.textContent = t.limit);
     if (submitBtn) submitBtn.textContent = t.submitBtn;
 
-    if (slots && slots > 0) {
+    // Solo generamos los campos si la sección es visible y hay un link personalizado
+    if (hasFamilyParam && slots && slots > 0) {
         generarCamposInvitados(slots);
     }
 });
 
 // =========================================
-// INTRODUCCIÓN & MÚSICA DE FONDO (MÓVILES + DESKTOP)
+// INTRODUCCIÓN & MÚSICA DE FONDO
 // =========================================
 
-// Función para actualizar el estado visual del botón flotante
 function updateMusicUI(playing) {
     isPlaying = playing;
     if (!musicToggleBtn) return;
@@ -258,19 +281,16 @@ function updateMusicUI(playing) {
     }
 }
 
-// 1. Ocultar overlay automáticamente a los 6s (si el usuario no interactuó antes)
 const autoHideTimer = setTimeout(() => {
     if (introOverlay) {
         introOverlay.classList.add('hidden');
     }
 }, 6000);
 
-// 2. Iniciar audio al primer toque/clic en cualquier parte de la pantalla (o sobre el overlay)
 const startAudioOnInteraction = () => {
-    // Si la intro sigue visible, la ocultamos de inmediato al interactuar
     if (introOverlay && !introOverlay.classList.contains('hidden')) {
         introOverlay.classList.add('hidden');
-        clearTimeout(autoHideTimer); // Cancelar el timer si el usuario ya tocó la pantalla
+        clearTimeout(autoHideTimer);
     }
 
     if (!isPlaying && bgMusic) {
@@ -281,19 +301,16 @@ const startAudioOnInteraction = () => {
         });
     }
 
-    // Limpiar escuchadores una vez ejecutado el primer toque
     document.removeEventListener('click', startAudioOnInteraction);
     document.removeEventListener('touchstart', startAudioOnInteraction);
 };
 
-// Escuchadores globales para la primera interacción
 document.addEventListener('click', startAudioOnInteraction);
 document.addEventListener('touchstart', startAudioOnInteraction);
 
-// 3. Control manual mediante el botón flotante de música
 if (musicToggleBtn) {
     musicToggleBtn.addEventListener('click', (e) => {
-        e.stopPropagation(); // Evita re-disparar startAudioOnInteraction
+        e.stopPropagation();
         
         if (!bgMusic) return;
 
@@ -307,8 +324,9 @@ if (musicToggleBtn) {
         }
     });
 }
+
 // =========================================
-// 2. GENERAR CAMPOS DE INVITADOS AUTOMÁTICAMENTE
+// GENERAR CAMPOS DE INVITADOS
 // =========================================
 function generarCamposInvitados(cantidad) {
     if (!guestsDiv) return;
@@ -360,7 +378,7 @@ function generarCamposInvitados(cantidad) {
 }
 
 // =========================================
-// 3. SECCIÓN REGALOS (ACORDEÓN SUTIL)
+// SECCIÓN REGALOS (ACORDEÓN)
 // =========================================
 function toggleGiftDetails(type) {
     const el = document.getElementById(`gift-${type}`);
@@ -370,7 +388,7 @@ function toggleGiftDetails(type) {
 }
 
 // =========================================
-// 4. VALIDACIÓN & SUBMIT
+// VALIDACIÓN & SUBMIT
 // =========================================
 function validarFormulario() {
   let valido = true;
@@ -502,25 +520,24 @@ function closeThanksModal() {
         thanksModal.classList.add('hidden');
     }
 }
+
+// INTERSECTION OBSERVER
 document.addEventListener("DOMContentLoaded", () => {
-  // Configuración del observer
   const observerOptions = {
     root: null,
     rootMargin: "0px",
-    threshold: 0.15 // Se activa cuando el 15% del elemento es visible
+    threshold: 0.15
   };
 
   const revealObserver = new IntersectionObserver((entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("active");
-        // Opcional: Dejar de observar si solo quieres que se anime la primera vez que aparece
         observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
 
-  // Seleccionar todas las secciones con la clase reveal y observarlas
   const revealElements = document.querySelectorAll(".reveal");
   revealElements.forEach(el => revealObserver.observe(el));
 });

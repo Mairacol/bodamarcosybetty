@@ -2,7 +2,7 @@
    SCRIPT PRINCIPAL DE LA INVITACIÓN (BILINGÜE & PERSONALIZADO)
    ========================================= */
 
-const SCRIPT_URL = "_GOOGLE_APPS_SCRIPT_URL_";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwr-EP7GgsMGsROJ4uIdie4LIl6731mTubadZZgDuTSy9JI25isFziW8gc7Cqg0CB7ltg/exec";
 
 // 1. LEER PARÁMETROS DE LA URL
 const urlParams = new URLSearchParams(window.location.search);

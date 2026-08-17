@@ -103,7 +103,7 @@ body {
     font-size: 1.25rem; 
     letter-spacing: 8px; 
     text-transform: uppercase;
-    color:#B2AC88;
+    color:#111111;
     font-weight: 300;
     opacity: 0;
     transform: translateY(10px);
@@ -193,7 +193,7 @@ body {
     font-family: var(--font-heading);
     font-size: 0.75rem;
     letter-spacing: 10px;
-    color:  var(--sage-green);
+    color:  #111111;
     text-transform: uppercase;
     font-weight: 500;
 }
@@ -279,7 +279,7 @@ body {
 .scroll-line {
     width: 1px;
     height: 25px;
-    background-color: #B2AC88;
+    background-color: #111111;
     animation: scrollPulse 2s ease-in-out infinite;
 }
 
@@ -340,7 +340,7 @@ body {
 .hero-date-script {
     font-family: var(--font-script);
     font-size: clamp(2rem, 5vw, 2.5rem);
-    color:  var(--sage-green);
+    color:  #111111;
     font-weight: 400;
     margin: 0;
     letter-spacing: 1px;
@@ -433,7 +433,7 @@ section {
 .venue-title {
     font-family: var(--font-script);
     font-size: 2.2rem; /* Un tamaño más generoso para que se luzca */
-    color:  var(--sage-green);
+    color: #111111;
     letter-spacing: normal; 
     text-transform: none; 
     font-weight: 400;
@@ -472,7 +472,7 @@ section {
     opacity: 0.6;
 }
 /* =========================================
-   ESTILOS: CRONOGRAMA DE BLOQUES LIBRES
+   ESTILOS: CRONOGRAMA CON ILUSTRACIONES EDITORIAL
    ========================================= */
 .cronograma-section {
     padding: 120px 24px;
@@ -481,56 +481,66 @@ section {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
 .cronograma-container {
-    max-width: 550px;
+    max-width: 600px;
     width: 100%;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .cronograma-subtitle {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color:  var(--sage-green);
+    color: #111111;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
     display: block;
 }
 
-/* Título del Cronograma con Brittany Signature */
 .cronograma-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color:  var(--sage-green);
+    color: #111111;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
-    margin-bottom: 60px;
+    margin-bottom: 70px;
 }
 
-/* Contenedor general con separación amplia */
+/* Timeline */
 .free-timeline {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 45px;
+    gap: 85px; /* Aumentado ligeramente para mejor aire entre bloques */
+    position: relative;
 }
 
-/* Bloque individual */
 .timeline-block {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.block-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 8px;
+    z-index: 3;
 }
 
-/* Hora delicada arriba */
 .timeline-block .block-time {
     font-family: var(--font-heading);
     font-size: 0.75rem;
@@ -540,14 +550,109 @@ section {
     font-weight: 300;
 }
 
-/* Nombre del evento abajo */
 .timeline-block .block-event {
     font-family: var(--font-heading);
     font-size: 1.25rem;
-    color:  var(--sage-green);
+    color: #111111;
     font-weight: 300;
     letter-spacing: 2px;
     margin: 0;
+}
+
+/* Contenedores de Ilustraciones */
+.illustration-wrap {
+    position: absolute;
+    pointer-events: none;
+}
+
+.illus-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+/* --- AJUSTES DE POSICIONES E ILUSTRACIONES --- */
+
+/* --- RECEPCIÓN: Más grande y rodada solo un poco a la derecha --- */
+.illus-left-recepcion {
+    left: -10px; /* Al aumentar 'left', la imagen se corre un poco más hacia el centro/derecha */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 110px; /* Tamaño más grande que antes (tenía 70px) */
+}
+
+
+/* Ceremonia */
+.illus-right {
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 110px;
+}
+
+/* Cena */
+.illus-left-large {
+    left: -30px;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 150px;
+}
+
+/* Bola Disco */
+.illus-right-disco {
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 60px;
+}
+
+/* Cierre: AUTO MÁS ABAJO Y SIN TAPAR EL TEXTO */
+.block-cierre {
+    gap: 15px; /* Espacio extra con la ilustración inferior */
+}
+
+.illus-bottom-cierre {
+    position: relative; /* Cambiado a relativo para que fluya debajo del texto */
+    top: 15px;          /* Empujado más abajo */
+    width: 140px;
+    margin: 0 auto;
+}
+
+/* Cintas en esquinas superiores */
+.editorial-ribbon {
+    position: absolute;
+    width: 180px;
+    height: 120px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.ribbon-top-left {
+    top: 40px;
+    left: -20px;
+    background-image: url('img/ilustraciones/cinta-izquierda.svg');
+}
+
+.ribbon-top-right {
+    top: 20px;
+    right: -10px;
+    background-image: url('img/ilustraciones/cinta-derecha.svg');
+}
+
+/* Responsivo para móviles */
+@media (max-width: 768px) {
+    .free-timeline {
+        gap: 70px;
+    }
+    
+    .illus-right-recepcion { right: -5px; width: 95px; }
+    .illus-right { right: -5px; width: 85px; }
+    .illus-left-large { left: -15px; width: 110px; }
+    .illus-right-disco { right: 0px; width: 45px; }
+    .illus-bottom-cierre { width: 110px; top: 10px; }
 }
 /* =========================================
    ESTILOS: DRESS CODE EDITORIAL (AMPLIADO)
@@ -574,7 +679,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color:  var(--sage-green);
+    color:  #111111;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -584,7 +689,7 @@ section {
 .dresscode-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color:  var(--sage-green);
+    color: #111111;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -594,7 +699,7 @@ section {
 .dresscode-main-type {
     font-family: var(--font-heading);
     font-size: 0.85rem;
-    color:  var(--sage-green);
+    color:#111111;
     letter-spacing: 4px;
     text-transform: uppercase;
     font-weight: 300;
@@ -685,7 +790,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color:  var(--sage-green);
+    color: #111111;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -695,7 +800,7 @@ section {
 .spotify-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color:  var(--sage-green);
+    color:  #111111;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -768,7 +873,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color:  var(--sage-green);
+    color:  #111111;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -778,7 +883,7 @@ section {
 .gifts-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color:  var(--sage-green);
+    color:  #111111;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -912,7 +1017,7 @@ section {
 .rsvp-inner .card p {
     font-family: var(--font-heading);
     font-size: 0.65rem;
-    color: #B2AC88;
+    color: #111111;
     letter-spacing: 3px;
     text-transform: uppercase;
     font-weight: 400;
@@ -930,7 +1035,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color: #B2AC88;
+    color: #111111;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -940,7 +1045,7 @@ section {
 .rsvp-inner .title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color: #B2AC88;
+    color: #111111;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -1177,7 +1282,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color: #B2AC88;
+    color: #111111;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -1187,7 +1292,7 @@ section {
 .photo-upload-inner .photo-title {
     font-family: var(--font-script);
     font-size: clamp(2.5rem, 6vw, 3.2rem);
-    color: #B2AC88;
+    color: #111111;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;

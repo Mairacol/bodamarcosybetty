@@ -84,7 +84,7 @@
     
     <!-- ILUSTRACIÓN ANIMADA -->
     <div class="hero-illustration">
-        <img src="images/m+bilustraciónverdesalvia-removebg-preview.png" alt="Marcos y Betty Ilustración" class="illustration-img">
+        <img src="images/GLOBOB+M-removebg-preview.png" alt="Marcos y Betty Ilustración" class="illustration-img">
     </div>
 <!-- FECHA Y ACCIÓN EDITORIAL -->
 <div class="hero-date-action-block">
@@ -132,35 +132,66 @@
     </div>
 </section>
 <!-- =========================================
-     SECCIÓN CRONOGRAMA - BLOQUES LIBRES (EDITORIAL)
+     SECCIÓN CRONOGRAMA - ILUSTRACIONES EDITORIAL
      ========================================= -->
 <section class="cronograma-section reveal">
+    <!-- Cintas decorativas flotantes -->
+    <div class="editorial-ribbon ribbon-top-left"></div>
+    <div class="editorial-ribbon ribbon-top-right"></div>
+
     <div class="cronograma-container">
         
         <span class="cronograma-subtitle" id="txtCronogramaSub">EL GRAN DÍA</span>
         <h2 class="cronograma-title-script" id="txtCronogramaTitle">Cronograma</h2>
 
-        <!-- Contenedor con espacio generoso entre eventos -->
         <div class="free-timeline">
             
-            <div class="timeline-block">
-                <span class="block-time">17:30 hs</span>
-                <h3 class="block-event" id="txtEv1">Recepción</h3>
+<!-- Recepción -->
+<div class="timeline-block block-with-illustration">
+    <div class="block-content">
+        <span class="block-time">17:30 hs</span>
+        <h3 class="block-event" id="txtEv1">Recepción</h3>
+    </div>
+    <!-- Mantenemos illus-left pero ajustaremos su tamaño y desplazamiento en CSS -->
+    <div class="illustration-wrap illus-left-recepcion">
+        <img src="/images/recepcion-removebg-preview.png" alt="Recepción" class="illus-img">
+    </div>
+</div>
+            <!-- Ceremonia -->
+            <div class="timeline-block block-with-illustration">
+                <div class="block-content">
+                    <span class="block-time">18:00 hs</span>
+                    <h3 class="block-event" id="txtEv2">Ceremonia</h3>
+                </div>
+                <div class="illustration-wrap illus-right">
+                    <img src="/images/ceremonia.png" alt="Ceremonia" class="illus-img">
+                </div>
             </div>
 
-            <div class="timeline-block">
-                <span class="block-time">18:00 hs</span>
-                <h3 class="block-event" id="txtEv2">Ceremonia</h3>
+            <!-- Cena con plato/postre & Bola Disco -->
+            <div class="timeline-block block-with-illustration">
+                <div class="block-content">
+                    <span class="block-time">19:00 hs</span>
+                    <h3 class="block-event" id="txtEv3">Cena & Fiesta</h3>
+                </div>
+                <div class="illustration-wrap illus-left-large">
+                    <img src="/images/cena.png" alt="Cena" class="illus-img">
+                </div>
+                <div class="illustration-wrap illus-right-disco">
+                    <img src="/images/bolaboliche-removebg-preview.png" alt="Fiesta" class="illus-img">
+                </div>
             </div>
 
-            <div class="timeline-block">
-                <span class="block-time">19:00 hs</span>
-                <h3 class="block-event" id="txtEv3">Cena & Fiesta</h3>
-            </div>
-
-            <div class="timeline-block">
-                <span class="block-time">02:00 hs</span>
-                <h3 class="block-event" id="txtEv4">Cierre</h3>
+            <!-- Cierre (Ilustración abajo, separada del texto) -->
+            <div class="timeline-block block-with-illustration block-cierre">
+                <div class="block-content">
+                    <span class="block-time">02:00 hs</span>
+                    <h3 class="block-event" id="txtEv4">Cierre</h3>
+                </div>
+                <!-- Contenedor estático debajo del texto para que no se encima -->
+                <div class="illustration-wrap illus-bottom-cierre">
+                    <img src="/images/Gemini_Generated_Image_bymhzybymhzybymh-removebg-preview.png" alt="Cierre" class="illus-img">
+                </div>
             </div>
 
         </div>

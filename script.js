@@ -17,6 +17,8 @@ const slots = parseInt(urlParams.get('slots')) || 1;
 const translations = {
     es: {
         musicBtn: 'Música',
+        musicOn: 'Música ON',
+        musicPaused: 'Pausado',
         title: 'Betty & Marcos | 28.11.2026',
         txtIntroDate: '28 . 11 . 2026',
         txtHeroDate: '28 / 11 / 2026',
@@ -73,9 +75,14 @@ const translations = {
         `,
         mensajePlaceholder: 'Mensaje para los novios (opcional)',
         submitBtn: 'ENVIAR CONFIRMACIÓN',
+        sendingBtn: 'ENVIANDO...',
         errorMsg: 'Por favor completá todos los campos obligatorios.',
         successTitle: '¡Asistencia Confirmada!',
         successText: 'Tu respuesta fue guardada con éxito. ¡Te esperamos!',
+        networkError: 'Hubo un error de red. Por favor, intentalo de nuevo.',
+        modalTitle: '¡Muchas gracias!',
+        modalText: 'Tu respuesta ha sido registrada con éxito.',
+        modalCloseBtn: 'Cerrar',
         photoSub: 'RECUERDOS',
         photoTitle: 'Subir fotos de la boda',
         photoDesc: 'Queremos revivir nuestro día a través de sus ojos. Compartinos las fotos y videos que saquen durante la celebración.',
@@ -84,6 +91,8 @@ const translations = {
     },
     en: {
         musicBtn: 'Music ON',
+        musicOn: 'Music ON',
+        musicPaused: 'Paused',
         title: "Betty & Marcos | 11.28.2026",
         txtIntroDate: "11 . 28 . 2026",
         heroSub: 'WE ARE GETTING MARRIED',
@@ -140,9 +149,14 @@ const translations = {
         `,
         mensajePlaceholder: 'Message for the couple (optional)',
         submitBtn: 'SUBMIT RSVP',
+        sendingBtn: 'SENDING...',
         errorMsg: 'Please complete all required fields.',
         successTitle: 'Attendance Confirmed!',
         successText: 'Your response has been saved successfully. We look forward to seeing you!',
+        networkError: 'Network error. Please try again.',
+        modalTitle: 'Thank you very much!',
+        modalText: 'Your response has been saved successfully.',
+        modalCloseBtn: 'Close',
         photoSub: 'MEMORIES',
         photoTitle: 'Upload Wedding Photos',
         photoDesc: 'We want to relive our day through your eyes. Please share the photos and videos you take during the celebration.',
@@ -181,9 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // SI TIENE LINK PERSONALIZADO -> MOSTRAR RSVP
             rsvpSection.style.display = 'block';
         } else {
-            // SI NO TIENE LINK PERSONALIZADO (marcosybetty.com a secas) -> OCULTAR Y REMOVER
+            // SI NO TIENE LINK PERSONALIZADO -> OCULTAR Y REMOVER
             rsvpSection.style.display = 'none';
-            rsvpSection.remove(); // Elimina la sección del mapa HTML
+            rsvpSection.remove();
         }
     }
 
@@ -239,6 +253,16 @@ document.addEventListener('DOMContentLoaded', () => {
     setText('txtPhotoTitle', t.photoTitle);
     setText('txtPhotoDesc', t.photoDesc);
 
+    // TRADUCCIÓN DEL MODAL DE AGRADECIMIENTO
+    if (thanksModal) {
+        const modalTitle = thanksModal.querySelector('h3');
+        const modalText = thanksModal.querySelector('p');
+        const modalBtn = thanksModal.querySelector('.modal-btn');
+        if (modalTitle) modalTitle.textContent = t.modalTitle;
+        if (modalText) modalText.textContent = t.modalText;
+        if (modalBtn) modalBtn.textContent = t.modalCloseBtn;
+    }
+
     const photoBtn = document.getElementById('txtPhotoBtn');
     if (photoBtn) {
         photoBtn.innerHTML = `<i class="fa-solid fa-cloud-arrow-up"></i> ${t.photoBtn}`;
@@ -256,7 +280,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.limit').forEach(el => el.textContent = t.limit);
     if (submitBtn) submitBtn.textContent = t.submitBtn;
 
-    // Solo generamos los campos si la sección es visible y hay un link personalizado
+    // Generamos los campos de invitados si corresponde
     if (hasFamilyParam && slots && slots > 0) {
         generarCamposInvitados(slots);
     }
@@ -273,11 +297,11 @@ function updateMusicUI(playing) {
     if (isPlaying) {
         musicToggleBtn.classList.add('playing');
         if (musicIcon) musicIcon.className = "fa-solid fa-volume-high";
-        if (musicText) musicText.textContent = lang === 'en' ? "Music ON" : "Música ON";
+        if (musicText) musicText.textContent = t.musicOn;
     } else {
         musicToggleBtn.classList.remove('playing');
         if (musicIcon) musicIcon.className = "fa-solid fa-volume-xmark";
-        if (musicText) musicText.textContent = lang === 'en' ? "Paused" : "Pausado";
+        if (musicText) musicText.textContent = t.musicPaused;
     }
 }
 
@@ -477,7 +501,7 @@ if (submitBtn) {
     }
 
     submitBtn.disabled = true;
-    submitBtn.textContent = lang === 'en' ? 'SENDING...' : 'ENVIANDO...';
+    submitBtn.textContent = t.sendingBtn;
 
     const guests = [];
     document.querySelectorAll('.guest-editorial-card').forEach((g, i) => {
@@ -504,7 +528,7 @@ if (submitBtn) {
 
     } catch (error) {
       console.error(error);
-      alert(lang === 'en' ? 'Network error. Please try again.' : 'Hubo un error de red. Por favor, intentalo de nuevo.');
+      alert(t.networkError);
       submitBtn.disabled = false;
       submitBtn.textContent = t.submitBtn;
     }

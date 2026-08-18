@@ -1,4 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; 
+}
 
+/* QUITAR RESPLANDOR AZUL/GRIS DE ENFOQUE Y SELECCIÓN */
+button, a, input, select, textarea {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+button:focus, a:focus, input:focus, select:focus, textarea:focus,
+button:active, a:active, input:active, select:active, textarea:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
 @font-face {
     font-family: 'Brittany Signature';
     src: url('fuentebritannysignature/BrittanySignature.ttf') format('truetype');
@@ -38,38 +55,106 @@ body {
 }
 
 /* =========================================
-   INTRODUCCIÓN: TRAZO LENTO Y LUJO
+   INTRODUCCIÓN: TRAZO LENTO Y LUJO (CON BOTÓN INICIAL)
    ========================================= */
+
+/* =========================================
+   INTRODUCCIÓN: CENTRADO ABSOLUTO (SIN SALTOS NI EMPUJONES)
+   ========================================= */
+
+/* 1. CONTENEDOR PRINCIPAL PANTALLA COMPLETA */
 .intro-overlay {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: #ffffff;
-    color: #111111;
+    z-index: 9999;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-    /* Transición de salida más pausada y elegante (1.8s) */
-    transition: transform 1.8s cubic-bezier(0.77, 0, 0.175, 1), visibility 1.8s ease;
-    transform: translateY(0);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 1s ease, opacity 1s ease, visibility 1s ease;
 }
 
-.intro-overlay.hidden {
-    transform: translateY(-100%);
+/* 2. PASO 1 (BOTÓN): Posicionado en el centro exacto */
+.start-step {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+}
+
+/* ESTILO DEL BOTÓN CENTRADO */
+button.editorial-agendar-link {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    display: inline-block;
+    
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    color: #111111;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #B2AC88;
+    transition: opacity 0.3s ease;
+}
+
+button.editorial-agendar-link:hover {
+    opacity: 0.6;
+}
+
+/* 3. PASO 2 (MONOGRAMA + FECHA): Mismo centro exacto */
+.intro-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 500px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+
+/* CLASES DE OCULTAMIENTO Y TRANSICIÓN */
+.hidden-step {
+    opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
 
-.intro-content {
-    text-align: center;
-    width: 100%;
-    max-width: 500px;
-    padding: 0 20px;
+.start-step.fade-out {
+    opacity: 0;
+    pointer-events: none;
 }
 
+.intro-overlay.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* 4. ANIMACIÓN DEL MONOGRAMA */
 .intro-svg {
     width: 100%;
     height: 140px;
@@ -79,13 +164,15 @@ body {
 .animated-monogram {
     font-family: var(--font-script);
     font-size: 7.5rem;
-    fill: none;
+    fill: transparent;
     stroke: #111111;
     stroke-width: 1.5;
     stroke-dasharray: 600;
     stroke-dashoffset: 600;
+}
+
+.animated-monogram.start-draw {
     animation: drawText 3.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    animation-delay: 0.4s;
 }
 
 .intro-divider {
@@ -94,8 +181,11 @@ body {
     background-color: #111111;
     margin: 10px auto 20px auto;
     opacity: 0;
+}
+
+.intro-divider.start-fade {
     animation: fadeInDivider 1.2s ease forwards;
-    animation-delay: 3.2s; 
+    animation-delay: 2.8s;
 }
 
 .intro-subtitle {
@@ -103,14 +193,17 @@ body {
     font-size: 1.25rem; 
     letter-spacing: 8px; 
     text-transform: uppercase;
-    color:#111111;
+    color: #111111;
     font-weight: 300;
     opacity: 0;
     transform: translateY(10px);
-    animation: fadeInSubtitle 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: 3.6s;
 }
-/* Animaciones pausadas */
+
+.intro-subtitle.start-fade {
+    animation: fadeInSubtitle 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 3.2s;
+}
+
 @keyframes drawText {
     0% {
         stroke-dashoffset: 600;
@@ -139,6 +232,7 @@ body {
         transform: translateY(0);
     }
 }
+
 /* =========================================
    REPRODUCTOR DE MÚSICA FLOTANTE
    ========================================= */
@@ -367,6 +461,61 @@ body {
 
 .editorial-agendar-link:hover {
     opacity: 0.6;
+}
+/* Botón inicial de apertura con tu estilo exacto */
+button.editorial-agendar-link {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 0.65rem;
+    color: #111111;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    padding-bottom: 4px;
+    border-bottom: 1px solid #B2AC88;
+    transition: opacity 0.3s ease;
+}
+
+button.editorial-agendar-link:hover {
+    opacity: 0.6;
+}
+
+/* Ocultar elementos en el paso 2 */
+.hidden-step {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+/* Mostrar elementos activados */
+.show-step {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+/* Ocultar el paso 1 tras tocarlo */
+.start-step {
+    transition: opacity 0.6s ease;
+}
+
+.start-step.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Transición final para cerrar todo el overlay */
+.intro-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
 }
 /* =========================================
    SECCIONES GENERALES

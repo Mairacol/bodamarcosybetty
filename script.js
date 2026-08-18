@@ -16,6 +16,7 @@ const slots = parseInt(urlParams.get('slots')) || 1;
 // Diccionario de textos ampliado para toda la web según el idioma
 const translations = {
     es: {
+        openBtn: 'ABRIR INVITACIÓN ',
         musicBtn: 'Música',
         musicOn: 'Música ON',
         musicPaused: 'Pausado',
@@ -90,6 +91,7 @@ const translations = {
         footerCredito: 'Una experiencia creada por'
     },
     en: {
+        openBtn: 'OPEN INVITATION ',
         musicBtn: 'Music ON',
         musicOn: 'Music ON',
         musicPaused: 'Paused',
@@ -127,7 +129,7 @@ const translations = {
         btnInt: 'VIEW BANK DETAILS (INTERNATIONAL)',
         bancoInt: 'Bank:',
         guestLabel: 'Guests',
-        passesAvailable: (n) => n === 1 ? '1 seat reserved' : `${n} seats reserved`,
+        //passesAvailable: (n) => n === 1 ? '1 seat reserved' : `${n} seats reserved`,
         asistenciaSub: 'ATTENDANCE',
         asistenciaTitle: 'RSVP',
         limit: 'Please RSVP by September 15, 2026',
@@ -175,6 +177,7 @@ const guestsDiv = document.getElementById('guests');
 const submitBtn = document.getElementById('submitBtn');
 const validationCodeInput = document.getElementById('validationCode');
 const introOverlay = document.getElementById('intro-overlay');
+const btnOpenInvitation = document.getElementById('btnOpenInvitation');
 const bgMusic = document.getElementById('bgMusic');
 const musicToggleBtn = document.getElementById('musicToggleBtn');
 const musicIcon = document.getElementById('musicIcon');
@@ -192,10 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (rsvpSection) {
         if (hasFamilyParam) {
-            // SI TIENE LINK PERSONALIZADO -> MOSTRAR RSVP
             rsvpSection.style.display = 'block';
         } else {
-            // SI NO TIENE LINK PERSONALIZADO -> OCULTAR Y REMOVER
             rsvpSection.style.display = 'none';
             rsvpSection.remove();
         }
@@ -204,7 +205,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const footerCreditoEl = document.getElementById('footer-credito');
     if (footerCreditoEl) footerCreditoEl.textContent = t.footerCredito;
 
-    // Cambia el título de la pestaña del navegador
     if (t.title) document.title = t.title;
 
     // Función para los textos con ID
@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (el) el.textContent = text;
     };
 
+    setText('btnOpenInvitation', t.openBtn);
     setText('musicText', t.musicBtn);
     setText('txtHeroSub', t.heroSub);
     setText('txtIntroDate', t.txtIntroDate);
@@ -290,48 +291,69 @@ document.addEventListener('DOMContentLoaded', () => {
 // INTRODUCCIÓN & MÚSICA DE FONDO
 // =========================================
 
+// =========================================
+// INTRODUCCIÓN & MÚSICA DE FONDO (SECUENCIAL)
+// =========================================
+
 function updateMusicUI(playing) {
     isPlaying = playing;
     if (!musicToggleBtn) return;
 
     if (isPlaying) {
         musicToggleBtn.classList.add('playing');
-        if (musicIcon) musicIcon.className = "fa-solid fa-volume-high";
+        if (musicIcon) musicIcon.className = "fa-solid fa-compact-disc fa-spin";
         if (musicText) musicText.textContent = t.musicOn;
     } else {
         musicToggleBtn.classList.remove('playing');
-        if (musicIcon) musicIcon.className = "fa-solid fa-volume-xmark";
+        if (musicIcon) musicIcon.className = "fa-solid fa-music";
         if (musicText) musicText.textContent = t.musicPaused;
     }
 }
 
-const autoHideTimer = setTimeout(() => {
-    if (introOverlay) {
-        introOverlay.classList.add('hidden');
-    }
-}, 6000);
+// Flujo al hacer clic en "ABRIR INVITACIÓN"
+if (btnOpenInvitation) {
+    btnOpenInvitation.addEventListener('click', () => {
+        const startStep = document.getElementById('start-step');
+        const introContent = document.getElementById('intro-content');
+        const monogramText = document.querySelector('.animated-monogram');
+        const introDivider = document.querySelector('.intro-divider');
+        const introSubtitle = document.querySelector('.intro-subtitle');
 
-const startAudioOnInteraction = () => {
-    if (introOverlay && !introOverlay.classList.contains('hidden')) {
-        introOverlay.classList.add('hidden');
-        clearTimeout(autoHideTimer);
-    }
+        // 1. Iniciar la música de fondo
+        if (bgMusic) {
+            bgMusic.play().then(() => {
+                updateMusicUI(true);
+            }).catch(e => {
+                console.log("Audio autoplay restringido:", e);
+            });
+        }
 
-    if (!isPlaying && bgMusic) {
-        bgMusic.play().then(() => {
-            updateMusicUI(true);
-        }).catch(e => {
-            console.log("Audio autoplay restringido por el navegador:", e);
-        });
-    }
+        // 2. Ocultar el botón centrado
+        if (startStep) {
+            startStep.classList.add('fade-out');
+            setTimeout(() => {
+                startStep.classList.add('hidden-step');
+            }, 500);
+        }
 
-    document.removeEventListener('click', startAudioOnInteraction);
-    document.removeEventListener('touchstart', startAudioOnInteraction);
-};
+        // 3. Mostrar la sección de la animación y disparar el trazo caligráfico
+        if (introContent) {
+            introContent.classList.remove('hidden-step');
+        }
 
-document.addEventListener('click', startAudioOnInteraction);
-document.addEventListener('touchstart', startAudioOnInteraction);
+        if (monogramText) monogramText.classList.add('start-draw');
+        if (introDivider) introDivider.classList.add('start-fade');
+        if (introSubtitle) introSubtitle.classList.add('start-fade');
 
+        // 4. Tras terminar la animación completa (5.5 segundos), deslizar la intro hacia arriba
+        setTimeout(() => {
+            if (introOverlay) {
+                introOverlay.classList.add('hidden');
+            }
+        }, 5500);
+    });
+}
+// Botón flotante para pausar/reproducir
 if (musicToggleBtn) {
     musicToggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();

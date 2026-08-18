@@ -18,33 +18,41 @@
 </head>
 <body>
 
-<!-- INTRODUCCIÓN CON EFECTO DE ESCRITURA CALIGRÁFICA -->
+<!-- INTRODUCCIÓN CON REPRODUCTOR Y ANIMACIÓN -->
 <div id="intro-overlay" class="intro-overlay">
-    <div class="intro-content">
+
+    <!-- FASE 1: Botón inicial para interactuar y activar música -->
+    <div id="start-step" class="start-step">
+        <button id="btnOpenInvitation" class="editorial-agendar-link" type="button">
+            ABRIR INVITACIÓN ✉️
+        </button>
+    </div>
+
+    <!-- FASE 2: Contenido animado (Monograma + Fecha) -->
+    <div id="intro-content" class="intro-content hidden-step">
         <!-- SVG para animar el trazo de las letras -->
         <svg class="intro-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
             <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="animated-monogram">
-                 M + B
+                M + B
             </text>
         </svg>
         <div class="intro-divider"></div>
         <p class="intro-subtitle" id="txtIntroDate">28 . 11 . 2026</p>
     </div>
+
 </div>
 
-    <!-- REPRODUCTOR DE MÚSICA DE FONDO (Con botón de pausa/reproducir) -->
-    <div class="music-player-floating">
-        <audio id="bgMusic" loop>
-            <!-- Royalty free romantic wedding background music link or placeholder -->
-            <source src="images/chachacha.m4a" type="audio/mpeg">
-            Tu navegador no soporta audio.
-        </audio>
-        <button id="musicToggleBtn" class="music-btn" title="Pausar / Reproducir música">
-            <i id="musicIcon" class="fa-solid fa-music"></i>
-            <span id="musicText">Música</span>
-        </button>
-    </div>
-
+<!-- REPRODUCTOR DE MÚSICA DE FONDO -->
+<div class="music-player-floating">
+    <audio id="bgMusic" loop preload="auto">
+        <source src="images/chachacha.m4a" type="audio/mp4">
+        Tu navegador no soporta audio.
+    </audio>
+    <button id="musicToggleBtn" class="music-btn" title="Pausar / Reproducir música">
+        <i id="musicIcon" class="fa-solid fa-music"></i>
+        <span id="musicText">Música</span>
+    </button>
+</div>
     <!-- CONTENIDO PRINCIPAL DE LA INVITACIÓN -->
     <main class="main-container">
 
@@ -372,7 +380,7 @@
     <p class="photo-desc" id="txtPhotoDesc">
         Queremos revivir nuestro día a través de sus ojos. Compartinos las fotos y videos que saquen durante la celebración.
     </p>
-    <a href="AQUI_PEGA_TU_LINK_DE_GOOGLE_DRIVE" target="_blank" rel="noopener noreferrer" class="editorial-drive-btn" id="txtPhotoBtn">
+    <a href="https://photos.app.goo.gl/5ske4nk8ThvRkerPA" target="_blank" rel="noopener noreferrer" class="editorial-drive-btn" id="txtPhotoBtn">
         <i class="fa-solid fa-cloud-arrow-up"></i> SUBIR FOTOS
     </a>
 </div>

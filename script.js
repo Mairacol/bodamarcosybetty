@@ -49,7 +49,7 @@ const translations = {
         giftsSub: 'DETALLES',
         giftsTitle: 'Regalos',
         giftsDesc: 'Lo más importante es compartir este día con ustedes. Si desean tener un gesto con nosotros para nuestra nueva etapa, pueden hacerlo aquí:',
-        btnNac: 'VER DATOS BANCARIOS (ARGENTINA)',
+        btnNac: 'VER DATOS BANCARIOS ',
         titularNac: 'Titular:',
         btnInt: 'VER DATOS BANCARIOS (INTERNACIONAL)',
         bancoInt: 'Banco:',

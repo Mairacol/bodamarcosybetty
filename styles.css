@@ -1,27 +1,13 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent; 
-}
-
-/* QUITAR RESPLANDOR AZUL/GRIS DE ENFOQUE Y SELECCIÓN */
-button, a, input, select, textarea {
-    outline: none !important;
-    -webkit-tap-highlight-color: transparent !important;
-}
-
-button:focus, a:focus, input:focus, select:focus, textarea:focus,
-button:active, a:active, input:active, select:active, textarea:active {
-    outline: none !important;
-    box-shadow: none !important;
-}
+/* =========================================
+   RESET GLOBAL & VARIABLES EDITORIALES
+   ========================================= */
 @font-face {
     font-family: 'Brittany Signature';
     src: url('fuentebritannysignature/BrittanySignature.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 :root {
     --bg-color: #ffffff;
     --primary-color: #000000;
@@ -34,10 +20,23 @@ button:active, a:active, input:active, select:active, textarea:active {
     --font-body: 'Montserrat', sans-serif;
 }
 
-* {
+/* Reseteo universal y eliminación de destellos azules en móviles */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+button, a, input, select, textarea {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+button:focus, a:focus, input:focus, select:focus, textarea:focus,
+button:active, a:active, input:active, select:active, textarea:active {
+    outline: none !important;
+    box-shadow: none !important;
 }
 
 body {
@@ -55,14 +54,10 @@ body {
 }
 
 /* =========================================
-   INTRODUCCIÓN: TRAZO LENTO Y LUJO (CON BOTÓN INICIAL)
+   INTRODUCCIÓN: CENTRADO ABSOLUTO SIN SALTOS
    ========================================= */
 
-/* =========================================
-   INTRODUCCIÓN: CENTRADO ABSOLUTO (SIN SALTOS NI EMPUJONES)
-   ========================================= */
-
-/* 1. CONTENEDOR PRINCIPAL PANTALLA COMPLETA */
+/* 1. Contenedor Pantalla Completa */
 .intro-overlay {
     position: fixed;
     top: 0;
@@ -79,7 +74,7 @@ body {
     transition: transform 1s ease, opacity 1s ease, visibility 1s ease;
 }
 
-/* 2. PASO 1 (BOTÓN): Posicionado en el centro exacto */
+/* 2. Paso 1 (Botón Inicial) */
 .start-step {
     position: absolute;
     top: 50%;
@@ -93,32 +88,7 @@ body {
     z-index: 2;
 }
 
-/* ESTILO DEL BOTÓN CENTRADO */
-button.editorial-agendar-link {
-    background: none;
-    border: none;
-    outline: none;
-    box-shadow: none;
-    cursor: pointer;
-    display: inline-block;
-    
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    color: #111111;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 500;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #B2AC88;
-    transition: opacity 0.3s ease;
-}
-
-button.editorial-agendar-link:hover {
-    opacity: 0.6;
-}
-
-/* 3. PASO 2 (MONOGRAMA + FECHA): Mismo centro exacto */
+/* 3. Paso 2 (Monograma + Fecha) */
 .intro-content {
     position: absolute;
     top: 50%;
@@ -135,7 +105,7 @@ button.editorial-agendar-link:hover {
     z-index: 1;
 }
 
-/* CLASES DE OCULTAMIENTO Y TRANSICIÓN */
+/* Clases de Ocultamiento */
 .hidden-step {
     opacity: 0;
     visibility: hidden;
@@ -147,14 +117,15 @@ button.editorial-agendar-link:hover {
     pointer-events: none;
 }
 
-.intro-overlay.hidden {
+.intro-overlay.hidden,
+.intro-overlay.fade-out {
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
 
-/* 4. ANIMACIÓN DEL MONOGRAMA */
+/* 4. Animación Trazo Monograma SVG */
 .intro-svg {
     width: 100%;
     height: 140px;
@@ -263,8 +234,9 @@ button.editorial-agendar-link:hover {
 .music-btn:hover {
     background-color: #333333;
 }
+
 /* =========================================
-   HERO SECTION - APERTURA PURA Y ELEGANTE
+   HERO SECTION
    ========================================= */
 .hero-section {
     padding: 100px 24px 60px 24px;
@@ -287,72 +259,40 @@ button.editorial-agendar-link:hover {
     font-family: var(--font-heading);
     font-size: 0.75rem;
     letter-spacing: 10px;
-    color:  #111111;
+    color: #111111;
     text-transform: uppercase;
     font-weight: 500;
 }
+
 .hero-names-group {
-
     display: flex;
-
     justify-content: center;
-
     width: 100%;
-
     margin: auto 0;
-
 }
-
-
 
 .hero-names {
-
     font-family: var(--font-script);
-
     font-size: clamp(4rem, 14vw, 6.5rem);
-
     color: #000000;
-
-    /* CAMBIO 1: Aumentamos el interlineado a 1.3 para dar aire a los trazos largos */
-
     line-height: 1.3;
-
     font-weight: 400;
-
     margin: 0;
-
     display: flex;
-
     align-items: center;
-
     justify-content: center;
-
     flex-wrap: wrap;
-
-    /* CAMBIO 2: Separación extra entre elementos (horizontal y vertical) */
-
     gap: 0.3em;
-
 }
 
-
-
 .ampersand-inline {
-
     font-family: var(--font-script);
-
     color: #000000;
-
     font-size: 0.8em;
-
     font-weight: 300;
-
     margin: 0 18px;
-
     vertical-align: middle;
-
 } 
-
 
 .scroll-indicator {
     display: flex;
@@ -382,7 +322,6 @@ button.editorial-agendar-link:hover {
     50% { transform: scaleY(1.4); opacity: 1; }
 }
 
-
 /* =========================================
    SECCIÓN DE REVELACIÓN (ILUSTRACIÓN + FECHA)
    ========================================= */
@@ -397,9 +336,6 @@ button.editorial-agendar-link:hover {
     box-sizing: border-box;
 }
 
-/* =========================================
-   ILUSTRACIÓN PROTAGONISTA AMPLIADA
-   ========================================= */
 .hero-illustration {
     max-width: 400px;
     width: 100%;
@@ -419,7 +355,7 @@ button.editorial-agendar-link:hover {
     50% { transform: translateY(-12px); }
     100% { transform: translateY(0px); }
 }
-/* Bloque de Fecha y Botón */
+
 .hero-date-action-block {
     display: flex;
     flex-direction: column;
@@ -428,47 +364,34 @@ button.editorial-agendar-link:hover {
     width: 100%;
 }
 
-/* =========================================
-   FECHA CON TIPOGRAFÍA MANUSCRITA (BRITTANY SIGNATURE)
-   ========================================= */
 .hero-date-script {
     font-family: var(--font-script);
     font-size: clamp(2rem, 5vw, 2.5rem);
-    color:  #111111;
+    color: #111111;
     font-weight: 400;
     margin: 0;
     letter-spacing: 1px;
 }
-/* =========================================
-   ENLACE DE AGENDAR FECHA (ESTILO EDITORIAL)
-   ========================================= */
+
 .hero-agendar-wrapper {
     margin-top: 10px;
 }
 
-.editorial-agendar-link {
-    font-family: var(--font-heading);
-    font-size: 0.65rem;
-    color: #111111;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 500;
-    padding-bottom: 4px;
-    border-bottom: 1px solid #B2AC88;
-    transition: opacity 0.3s ease;
-}
-
-.editorial-agendar-link:hover {
-    opacity: 0.6;
-}
-/* Botón inicial de apertura con tu estilo exacto */
+/* =========================================
+   BOTONES & ENLACES UNIFICADOS (ESTILO EDITORIAL)
+   ========================================= */
+.editorial-agendar-link,
 button.editorial-agendar-link {
-    background: none;
-    border: none;
-    outline: none;
-    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
     cursor: pointer;
+    display: inline-block;
+    
     font-family: var(--font-heading);
     font-size: 0.65rem;
     color: #111111;
@@ -477,46 +400,15 @@ button.editorial-agendar-link {
     text-decoration: none;
     font-weight: 500;
     padding-bottom: 4px;
-    border-bottom: 1px solid #B2AC88;
+    border-bottom: 1px solid #B2AC88 !important;
     transition: opacity 0.3s ease;
 }
 
+.editorial-agendar-link:hover,
 button.editorial-agendar-link:hover {
     opacity: 0.6;
 }
 
-/* Ocultar elementos en el paso 2 */
-.hidden-step {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 1s ease, visibility 1s ease;
-}
-
-/* Mostrar elementos activados */
-.show-step {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    transition: opacity 1s ease, visibility 1s ease;
-}
-
-/* Ocultar el paso 1 tras tocarlo */
-.start-step {
-    transition: opacity 0.6s ease;
-}
-
-.start-step.fade-out {
-    opacity: 0;
-    pointer-events: none;
-}
-
-/* Transición final para cerrar todo el overlay */
-.intro-overlay.fade-out {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1.2s ease, visibility 1.2s ease;
-}
 /* =========================================
    SECCIONES GENERALES
    ========================================= */
@@ -542,8 +434,9 @@ section {
     letter-spacing: 2px;
     text-transform: uppercase;
 }
+
 /* =========================================
-   ESTILOS: LUGAR & UBICACIÓN EDITORIAL
+   LUGAR & UBICACIÓN EDITORIAL
    ========================================= */
 .venue-editorial-section {
     padding: 110px 24px;
@@ -563,7 +456,6 @@ section {
     align-items: center;
 }
 
-/* --- Logo de la Quinta --- */
 .venue-logo-wrapper {
     width: 250px;
     margin: 0 auto 35px auto;
@@ -576,12 +468,9 @@ section {
     filter: grayscale(100%) contrast(140%) brightness(105%);
 }
 
-/* =========================================
-   TIPOGRAFÍA MANUSCRITA 
-   ========================================= */
 .venue-title {
     font-family: var(--font-script);
-    font-size: 2.2rem; /* Un tamaño más generoso para que se luzca */
+    font-size: 2.2rem;
     color: #111111;
     letter-spacing: normal; 
     text-transform: none; 
@@ -589,7 +478,6 @@ section {
     margin-bottom: 15px;
 }
 
-/* --- Texto descriptivo --- */
 .venue-text {
     font-size: 0.9rem;
     color: #666666;
@@ -599,7 +487,6 @@ section {
     line-height: 1.6;
 }
 
-/* --- Enlace al Mapa  --- */
 .venue-link-wrapper {
     display: inline-block;
 }
@@ -620,8 +507,9 @@ section {
 .editorial-map-link:hover {
     opacity: 0.6;
 }
+
 /* =========================================
-   ESTILOS: CRONOGRAMA CON ILUSTRACIONES EDITORIAL
+   CRONOGRAMA EDITORIAL
    ========================================= */
 .cronograma-section {
     padding: 120px 24px;
@@ -666,12 +554,11 @@ section {
     margin-bottom: 70px;
 }
 
-/* Timeline */
 .free-timeline {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 85px; /* Aumentado ligeramente para mejor aire entre bloques */
+    gap: 85px;
     position: relative;
 }
 
@@ -708,7 +595,6 @@ section {
     margin: 0;
 }
 
-/* Contenedores de Ilustraciones */
 .illustration-wrap {
     position: absolute;
     pointer-events: none;
@@ -721,18 +607,13 @@ section {
     object-fit: contain;
 }
 
-/* --- AJUSTES DE POSICIONES E ILUSTRACIONES --- */
-
-/* --- RECEPCIÓN: Más grande y rodada solo un poco a la derecha --- */
 .illus-left-recepcion {
-    left: -10px; /* Al aumentar 'left', la imagen se corre un poco más hacia el centro/derecha */
+    left: -10px;
     top: 50%;
     transform: translateY(-50%);
-    width: 110px; /* Tamaño más grande que antes (tenía 70px) */
+    width: 110px;
 }
 
-
-/* Ceremonia */
 .illus-right {
     right: -10px;
     top: 50%;
@@ -740,7 +621,6 @@ section {
     width: 110px;
 }
 
-/* Cena */
 .illus-left-large {
     left: -30px;
     top: 40%;
@@ -748,7 +628,6 @@ section {
     width: 150px;
 }
 
-/* Bola Disco */
 .illus-right-disco {
     right: 10px;
     top: 50%;
@@ -756,19 +635,17 @@ section {
     width: 60px;
 }
 
-/* Cierre: AUTO MÁS ABAJO Y SIN TAPAR EL TEXTO */
 .block-cierre {
-    gap: 15px; /* Espacio extra con la ilustración inferior */
+    gap: 15px;
 }
 
 .illus-bottom-cierre {
-    position: relative; /* Cambiado a relativo para que fluya debajo del texto */
-    top: 15px;          /* Empujado más abajo */
+    position: relative;
+    top: 15px;
     width: 140px;
     margin: 0 auto;
 }
 
-/* Cintas en esquinas superiores */
 .editorial-ribbon {
     position: absolute;
     width: 180px;
@@ -791,20 +668,17 @@ section {
     background-image: url('img/ilustraciones/cinta-derecha.svg');
 }
 
-/* Responsivo para móviles */
 @media (max-width: 768px) {
-    .free-timeline {
-        gap: 70px;
-    }
-    
+    .free-timeline { gap: 70px; }
     .illus-right-recepcion { right: -5px; width: 95px; }
     .illus-right { right: -5px; width: 85px; }
     .illus-left-large { left: -15px; width: 110px; }
     .illus-right-disco { right: 0px; width: 45px; }
     .illus-bottom-cierre { width: 110px; top: 10px; }
 }
+
 /* =========================================
-   ESTILOS: DRESS CODE EDITORIAL (AMPLIADO)
+   DRESS CODE EDITORIAL
    ========================================= */
 .dresscode-section {
     padding: 120px 24px;
@@ -828,7 +702,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color:  #111111;
+    color: #111111;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -848,14 +722,13 @@ section {
 .dresscode-main-type {
     font-family: var(--font-heading);
     font-size: 0.85rem;
-    color:#111111;
+    color: #111111;
     letter-spacing: 4px;
     text-transform: uppercase;
     font-weight: 300;
     margin-bottom: 70px;
 }
 
-/* */
 .dresscode-grid {
     display: flex;
     flex-direction: column;
@@ -882,7 +755,6 @@ section {
     margin-bottom: 25px;
 }
 
-
 .dresscode-double-img-wrapper {
     display: flex;
     justify-content: center;
@@ -906,7 +778,6 @@ section {
     margin-bottom: 12px;
 }
 
-/* Etiqueta inferior de cada ilustración */
 .sub-label {
     font-family: var(--font-heading);
     font-size: 0.6rem;
@@ -914,8 +785,9 @@ section {
     color: #666666;
     text-transform: uppercase;
 }
+
 /* =========================================
-   ESTILOS: SPOTIFY EDITORIAL
+   SPOTIFY EDITORIAL
    ========================================= */
 .spotify-section {
     padding: 120px 24px;
@@ -949,7 +821,7 @@ section {
 .spotify-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color:  #111111;
+    color: #111111;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -967,7 +839,6 @@ section {
     margin: 0 auto 35px auto;
 }
 
-/* Enlace de acción editorial (Sugerir canción) */
 .spotify-action-wrapper {
     margin-bottom: 50px;
 }
@@ -989,7 +860,6 @@ section {
     opacity: 0.6;
 }
 
-/* Contenedor del reproductor  */
 .spotify-player-wrapper {
     width: 100%;
     max-width: 500px;
@@ -997,8 +867,9 @@ section {
     border-radius: 16px;
     overflow: hidden;
 }
+
 /* =========================================
-   ESTILOS: REGALOS EDITORIAL
+   REGALOS EDITORIAL
    ========================================= */
 .gifts-section {
     padding: 120px 24px;
@@ -1022,7 +893,7 @@ section {
     font-family: var(--font-heading);
     font-size: 0.65rem;
     letter-spacing: 6px;
-    color:  #111111;
+    color: #111111;
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 10px;
@@ -1032,7 +903,7 @@ section {
 .gifts-title-script {
     font-family: var(--font-script);
     font-size: clamp(2.8rem, 7vw, 3.5rem);
-    color:  #111111;
+    color: #111111;
     letter-spacing: normal;
     text-transform: none;
     font-weight: 400;
@@ -1064,7 +935,6 @@ section {
     align-items: center;
 }
 
-/* Botón de enlace tipográfico sutil */
 .gift-trigger-link {
     background: none;
     border: none;
@@ -1083,7 +953,6 @@ section {
 .gift-trigger-link:hover {
     opacity: 0.6;
 }
-
 
 .gift-details {
     margin-top: 20px;
@@ -1108,10 +977,10 @@ section {
 .gift-details.hidden {
     display: none;
 }
-/* =========================================
-   ESTILOS: RSVP EDITORIAL & LUJO SILENCIOSO
-   ========================================= */
 
+/* =========================================
+   RSVP EDITORIAL
+   ========================================= */
 .rsvp {
     background-color: #ffffff;
     padding: 100px 24px;
@@ -1129,9 +998,6 @@ section {
     text-align: center;
 }
 
-/* =========================================
-   TARJETA DE INVITADO 
-   ========================================= */
 .rsvp-inner .card {
     background: #ffffff;
     padding: 35px 30px;
@@ -1173,9 +1039,6 @@ section {
     margin: 0;
 }
 
-/* =========================================
-   CABECERA Y FORMULARIO
-   ========================================= */
 .rsvp-header-block {
     margin-bottom: 45px;
 }
@@ -1210,7 +1073,6 @@ section {
     font-weight: 300;
 }
 
-/* Tarjeta de cada invitado */
 .guest-editorial-card {
     background: #ffffff;
     padding: 30px 10px;
@@ -1234,7 +1096,6 @@ section {
     font-weight: 500;
 }
 
-/* Inputs, selects y áreas de texto */
 .input-row-grid {
     display: flex;
     gap: 20px;
@@ -1407,8 +1268,9 @@ section {
     font-size: 0.65rem;
     border-radius: 2px;
 }
+
 /* =========================================
-   ESTILOS: SECCIÓN DE FOTOS (EDITORIAL)
+   SECCIÓN DE FOTOS (EDITORIAL)
    ========================================= */
 .photo-upload-section {
     background-color: #ffffff;
@@ -1458,7 +1320,6 @@ section {
     font-weight: 300;
 }
 
-/* Botón estilo editorial minimalista */
 .editorial-drive-btn {
     display: inline-flex;
     align-items: center;
@@ -1490,35 +1351,33 @@ section {
 .editorial-drive-btn i {
     font-size: 0.9rem;
 }
+
 footer {
-  margin-top: 50px;
-  padding: 20px;
-  text-align: center;
-  border-top: 1px solid #f2f2f2;
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #f2f2f2;
 }
 
 footer p {
-  font-family: 'Georgia', serif;
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: #999;
+    font-family: 'Georgia', serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #999;
 }
 
 footer a {
-  color: #666;
-  text-decoration: none;
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
+    color: #666;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
 }
-/* 1. Estilo base de las opciones (opcional, para asegurar consistencia) */
+
 .editorial-select.comida option {
     background-color: #ffffff;
     color: #000000;             
 }
 
-
-
-/* */
 .editorial-select.comida option:checked,
 .editorial-select.comida option:checked:hover {
     background-color: #000000; 
@@ -1529,18 +1388,18 @@ footer a {
     box-shadow: 0 0 10px 100px #000000 inset !important;
     color: #ffffff !important;
 }
+
 /* =========================================
    EFECTO SCROLL REVEAL ELEGANTE
    ========================================= */
 .reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  will-change: opacity, transform;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
 }
 
-
 .reveal.active {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }

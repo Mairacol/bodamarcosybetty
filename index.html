@@ -282,9 +282,9 @@
     </div>
 </section>
 
-       <!-- =========================================
-     SECCIÓN REGALOS (ESTILO EDITORIAL DISCRETO)
-     ========================================= -->
+<!-- =========================================
+SECCIÓN REGALOS (ESTILO EDITORIAL DISCRETO)
+========================================= -->
 <section class="gifts-section reveal">
     <div class="gifts-container">
         
@@ -296,27 +296,49 @@
         
         <div class="gifts-links-wrapper">
             
-            <!-- Opción Cuenta Nacional -->
-            <div class="gift-accordion-item">
+            <!-- Opción Cuentas Nacionales (Español) -->
+            <div class="gift-accordion-item lang-es">
                 <button class="gift-trigger-link" onclick="toggleGiftDetails('nacional')" id="txtBtnNac">
-                    VER DATOS BANCARIOS (ARGENTINA)
+                    VER DATOS BANCARIOS 
                 </button>
                 <div id="gift-nacional" class="gift-details hidden">
-                    <p><span>Alias:</span> betty.y.marcos.boda</p>
-                    <p><span>CBU:</span> 0000003100012345678910</p>
-                    <p><span id="txtTitularNac">Titular:</span> Betty o Marcos</p>
+                    
+                    <!-- Cuenta Pesos -->
+                    <p class="gift-account-header"><strong>Caja de Ahorro en Pesos ($)</strong></p>
+                    <p><span>Banco:</span> BBVA</p>
+                    <p><span>Alias:</span> Parisey.sterin</p>
+                    <p><span>CBU:</span> 017035714000000576077</p>
+                    <p><span>N° de Cuenta:</span> 357-5760/7</p>
+                    <p><span>Titular:</span> Parisey Marcos Alejandro</p>
+                    <p><span>CUIT/CUIL:</span> 20-32538064-1</p>
+
+                    <br>
+
+                    <!-- Cuenta Dólares -->
+                    <p class="gift-account-header"><strong>Caja de Ahorro en Dólares (U$S)</strong></p>
+                    <p><span>Banco:</span> BBVA</p>
+                     <p><span>Alias:</span> Parisey.sterin.usd</p>
+                    <p><span>CBU:</span> 0170186544000010308697</p>
+                    <p><span>N° de Cuenta:</span> 186-103086/9</p>
+                    <p><span>Titular:</span> Parisey Marcos Alejandro</p>
+                    <p><span>CUIT/CUIL:</span> 20-32538064-1</p>
+
                 </div>
             </div>
 
-            <!-- Opción Cuenta Internacional -->
-            <div class="gift-accordion-item">
+            <!-- Opción Cuenta Internacional (Inglés) -->
+            <div class="gift-accordion-item lang-en">
                 <button class="gift-trigger-link" onclick="toggleGiftDetails('internacional')" id="txtBtnInt">
-                    VER DATOS BANCARIOS (INTERNACIONAL)
+                    VIEW BANK DETAILS (INTERNATIONAL WIRE)
                 </button>
                 <div id="gift-internacional" class="gift-details hidden">
-                    <p><span id="txtBancoInt">Banco:</span> Wise / Revolut</p>
-                    <p><span>IBAN / Account:</span> US63SWIS00000012345678</p>
-                    <p><span>Swift/BIC:</span> SWISUS33XXX</p>
+                    <p><span>Bank:</span> PNC Bank</p>
+                    <p><span>Bank Address:</span> 500 First Avenue, Pittsburgh, PA 15219</p>
+                    <p><span>Beneficiary:</span> Betty Ginette Sterin</p>
+                    <p><span>Beneficiary Address:</span> 7600 Bayshore Dr., Apt 203A, Treasure Island, FL 33706</p>
+                    <p><span>Account Number:</span> 1238797376</p>
+                    <p><span>ABA/Routing Number:</span> 043000096</p>
+                    <p><span>SWIFT / BIC Code:</span> PNCCUS33</p>
                 </div>
             </div>
 

@@ -629,8 +629,8 @@ section {
 }
 
 .illus-right-disco {
-    right: 10px;
-    top: 50%;
+    right: 90px; 
+    top: 70%;
     transform: translateY(-50%);
     width: 60px;
 }
@@ -673,7 +673,7 @@ section {
     .illus-right-recepcion { right: -5px; width: 95px; }
     .illus-right { right: -5px; width: 85px; }
     .illus-left-large { left: -15px; width: 110px; }
-    .illus-right-disco { right: 0px; width: 45px; }
+    .illus-right-disco { right: 35px; width: 55px;top:60px; }
     .illus-bottom-cierre { width: 110px; top: 10px; }
 }
 
@@ -963,7 +963,7 @@ section {
     border-radius: 4px;
     text-align: left;
     font-family: var(--font-heading);
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     color: #333333;
     letter-spacing: 1px;
     line-height: 1.8;
@@ -977,7 +977,10 @@ section {
 .gift-details.hidden {
     display: none;
 }
-
+.gift-accordion-item.lang-es,
+.gift-accordion-item.lang-en {
+    display: none;
+}
 /* =========================================
    RSVP EDITORIAL
    ========================================= */

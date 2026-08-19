@@ -54,7 +54,6 @@ const translations = {
         btnInt: 'VER DATOS BANCARIOS (INTERNACIONAL)',
         bancoInt: 'Banco:',
         guestLabel: 'Invitados',
-        passesAvailable: (n) => n === 1 ? '1 lugar reservado' : `${n} lugares reservados`,
         asistenciaSub: 'ASISTENCIA',
         asistenciaTitle: 'RSVP',
         limit: 'Confirmar antes del 15 de Septiembre 2026',
@@ -586,4 +585,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const revealElements = document.querySelectorAll(".reveal");
   revealElements.forEach(el => revealObserver.observe(el));
+});
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Leemos los parámetros de la URL actual
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang');
+    const family = urlParams.get('family');
+
+    // 2. Obtenemos los elementos de las cuentas
+    const esItem = document.querySelector('.gift-accordion-item.lang-es');
+    const enItem = document.querySelector('.gift-accordion-item.lang-en');
+
+    // Por defecto ocultamos ambas cuentas
+    if (esItem) esItem.style.display = 'none';
+    if (enItem) enItem.style.display = 'none';
+
+    // 3. Evaluamos la URL
+    if (lang === 'en') {
+        // Caso: URL con lang=en -> Muestra datos Internacionales
+        if (enItem) enItem.style.display = 'block';
+    } else if (family) {
+        // Caso: URL con parámetro family (y sin lang=en) -> Muestra datos Argentina
+        if (esItem) esItem.style.display = 'block';
+    }
+    // Si es la URL base (marcosybetty.com sin family ni lang=en), 
+    // ambos se quedan con display: 'none'.
 });

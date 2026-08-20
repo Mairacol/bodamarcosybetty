@@ -11,7 +11,6 @@ const hasFamilyParam = urlParams.has('family');
 const family = urlParams.get('family'); 
 const slots = parseInt(urlParams.get('slots')) || 1;
 
-
 const translations = {
     es: {
         openBtn: 'ABRIR INVITACIÓN ',

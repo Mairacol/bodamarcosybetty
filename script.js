@@ -1,6 +1,4 @@
-/* =========================================
-   SCRIPT PRINCIPAL DE LA INVITACIÓN (BILINGÜE & PERSONALIZADO)
-   ========================================= */
+
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwr-EP7GgsMGsROJ4uIdie4LIl6731mTubadZZgDuTSy9JI25isFziW8gc7Cqg0CB7ltg/exec";
 
@@ -13,7 +11,7 @@ const hasFamilyParam = urlParams.has('family');
 const family = urlParams.get('family'); 
 const slots = parseInt(urlParams.get('slots')) || 1;
 
-// Diccionario de textos ampliado para toda la web según el idioma
+
 const translations = {
     es: {
         openBtn: 'ABRIR INVITACIÓN ',
@@ -53,7 +51,7 @@ const translations = {
         titularNac: 'Titular:',
         btnInt: 'VER DATOS BANCARIOS (INTERNACIONAL)',
         bancoInt: 'Banco:',
-        guestLabel: 'Invitados',
+        guestLabel: (n) => n === 1 ? 'Invitado' : 'Invitados',
         asistenciaSub: 'ASISTENCIA',
         asistenciaTitle: 'RSVP',
         limit: 'Confirmar antes del 15 de Septiembre 2026',
@@ -127,8 +125,7 @@ const translations = {
         titularNac: 'Account Holder:',
         btnInt: 'VIEW BANK DETAILS (INTERNATIONAL)',
         bancoInt: 'Bank:',
-        guestLabel: 'Guests',
-        //passesAvailable: (n) => n === 1 ? '1 seat reserved' : `${n} seats reserved`,
+        guestLabel: (n) => n === 1 ? 'Guest' : 'Guests',
         asistenciaSub: 'ATTENDANCE',
         asistenciaTitle: 'RSVP',
         limit: 'Please RSVP by September 15, 2026',
@@ -169,7 +166,7 @@ const translations = {
 // Seleccionar el idioma actual
 const t = translations[lang] || translations.es;
 
-// Elementos del DOM
+//  DOM
 const familyNameEl = document.getElementById('familyName');
 const slotsEl = document.getElementById('slots');
 const guestsDiv = document.getElementById('guests');
@@ -187,9 +184,7 @@ let isPlaying = false;
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // -------------------------------------------------------------
-    // CONTROL EXCLUSIVO DE VISIBILIDAD DEL RSVP
-    // -------------------------------------------------------------
+  
     const rsvpSection = document.getElementById('rsvpSection');
 
     if (rsvpSection) {
@@ -206,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (t.title) document.title = t.title;
 
-    // Función para los textos con ID
+   
     const setText = (id, text) => {
         const el = document.getElementById(id);
         if (el) el.textContent = text;
@@ -246,14 +241,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setText('txtTitularNac', t.titularNac);
     setText('txtBtnInt', t.btnInt);
     setText('txtBancoInt', t.bancoInt);
-    setText('txtGuestLabel', t.guestLabel);
+    setText('txtGuestLabel', typeof t.guestLabel === 'function' ? t.guestLabel(slots) : t.guestLabel);
     setText('txtRsvpSub', t.asistenciaSub);
     setText('txtRsvpLimit', t.limit);
     setText('txtPhotoSub', t.photoSub);
     setText('txtPhotoTitle', t.photoTitle);
     setText('txtPhotoDesc', t.photoDesc);
 
-    // TRADUCCIÓN DEL MODAL DE AGRADECIMIENTO
+    
     if (thanksModal) {
         const modalTitle = thanksModal.querySelector('h3');
         const modalText = thanksModal.querySelector('p');
@@ -280,19 +275,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.limit').forEach(el => el.textContent = t.limit);
     if (submitBtn) submitBtn.textContent = t.submitBtn;
 
-    // Generamos los campos de invitados si corresponde
+  
     if (hasFamilyParam && slots && slots > 0) {
         generarCamposInvitados(slots);
     }
 });
 
-// =========================================
-// INTRODUCCIÓN & MÚSICA DE FONDO
-// =========================================
 
-// =========================================
-// INTRODUCCIÓN & MÚSICA DE FONDO (SECUENCIAL)
-// =========================================
 
 function updateMusicUI(playing) {
     isPlaying = playing;

@@ -260,33 +260,24 @@
     <div class="spotify-container">
         
         <span class="spotify-subtitle" id="txtPartySub">LA FIESTA</span>
-        <h2 class="spotify-title-script">Playlist </h2>
+        <h2 class="spotify-title-script">Playlist</h2>
         <p class="spotify-desc" id="txtSpotifyDesc">¿Qué tema no puede faltar en la fiesta? ¡Sumá tus canciones favoritas a nuestra playlist colaborativa!</p>
 
-      <div class="spotify-action-wrapper">
-    <!-- Enlace directo para abrir la app de Spotify en celulares -->
-    <a href="spotify:playlist:1nofGPzPymNX051TgYr0lu" 
-       class="editorial-spotify-link mobile-only" 
-       id="txtSpotifyBtnApp" 
-       title="Sumar canciones desde la app">
-        SUMAR DESDE LA APP
-    </a>
-    <br>
+        <div class="spotify-action-wrapper">
+            <!-- Enlace directo con el token de invitación activa -->
+            <a href="https://open.spotify.com/playlist/4GlLiC6NiuYqCjSL2TBFPS?si=0cfb1959e88c4887&pt=74546532d99b123b3021f2ea78f0c7e1" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="editorial-spotify-link" 
+               id="txtSpotifyBtn" 
+               title="Sumar canciones a la playlist">
+                SUGERIR CANCIÓN
+            </a>
+        </div>
 
-    <!-- Enlace web con token de invitación colaborativa -->
-    <a href="https://open.spotify.com/playlist/4GlLiC6NiuYqCjSL2TBFPS?si=81457f1c78634893&pt=06667fbb6792be63b8843e047595b1f2" 
-       target="_blank" 
-       rel="noopener noreferrer" 
-       class="editorial-spotify-link" 
-       id="txtSpotifyBtn" 
-       title="Sumar canciones a la playlist">
-        SUGERIR CANCIÓN (WEB)
-    </a>
-</div>
-
-        <!-- Reproductor de Spotify integrado (Iframe adaptado al diseño limpio) -->
+        <!-- Reproductor de Spotify integrado -->
         <div class="spotify-player-wrapper">
-          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4GlLiC6NiuYqCjSL2TBFPS?utm_source=generator&theme=0&si=385918425ef54436" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4GlLiC6NiuYqCjSL2TBFPS?utm_source=generator&theme=0&si=9d053bff8fe64f36" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
 
     </div>

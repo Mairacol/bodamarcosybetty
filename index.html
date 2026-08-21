@@ -263,17 +263,26 @@
         <h2 class="spotify-title-script">Playlist </h2>
         <p class="spotify-desc" id="txtSpotifyDesc">¿Qué tema no puede faltar en la fiesta? ¡Sumá tus canciones favoritas a nuestra playlist colaborativa!</p>
 
-        <!-- Botón de sugerir canción con enlace colaborativo de Spotify -->
-        <div class="spotify-action-wrapper">
-         <a href="https://open.spotify.com/playlist/1nofGPzPymNX051TgYr0lu" 
-   target="_blank" 
-   rel="noopener noreferrer"
-   class="editorial-spotify-link"
-   id="txtSpotifyBtn"
-   title="Sumar canciones a la playlist">
-    SUGERIR CANCIÓN
-</a>
-        </div>
+      <div class="spotify-action-wrapper">
+    <!-- Enlace directo para abrir la app de Spotify en celulares -->
+    <a href="spotify:playlist:1nofGPzPymNX051TgYr0lu" 
+       class="editorial-spotify-link mobile-only" 
+       id="txtSpotifyBtnApp" 
+       title="Sumar canciones desde la app">
+        SUMAR DESDE LA APP
+    </a>
+    <br>
+
+    <!-- Enlace web con token de invitación colaborativa -->
+    <a href="https://open.spotify.com/playlist/1nofGPzPymNX051TgYr0lu?si=HgrtDBhAQR6v9JzjjVQ0-g&pt=60497d799704950ae388cce2015a0cb5" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       class="editorial-spotify-link" 
+       id="txtSpotifyBtn" 
+       title="Sumar canciones a la playlist">
+        SUGERIR CANCIÓN (WEB)
+    </a>
+</div>
 
         <!-- Reproductor de Spotify integrado (Iframe adaptado al diseño limpio) -->
         <div class="spotify-player-wrapper">
